@@ -1,0 +1,17 @@
+[{   
+    "credentials":
+    {
+    "email" :"test@test.com",
+    "password": "0000"},
+        "links": {
+            "github":"https://github.com/",
+            "youtube":"https://www.youtube.com/",
+            "linkedIn":"https://linkedin.com/"
+        },
+        "profil": {
+         "image" : "",
+        "firstname":"test",
+        "lastname":"test"
+        }
+    
+}]
