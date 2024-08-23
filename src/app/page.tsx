@@ -1,7 +1,10 @@
-import React from 'react';
+'use client';
 
-const page = () => {
-  return <div></div>;
+import React from 'react';
+import Home from './(dashboard)/home/page';
+
+const Index = () => {
+  return <Home />;
 };
 
-export default page;
+export default Index;

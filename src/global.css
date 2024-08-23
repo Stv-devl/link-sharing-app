@@ -3,42 +3,21 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'InstrumentSans';
-  src: url('/fonts/InstrumentSans-VariableFont_wdth,wght.ttf')
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Italic-VariableFont_wdth.ttf')
     format('truetype');
   font-weight: 100 900;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'InstrumentSans';
-  src: url('/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf')
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Italic-VariableFont_wdth.ttf')
     format('truetype');
   font-weight: 100 900;
   font-style: italic;
 }
 
-@font-face {
-  font-family: 'InstrumentSans';
-  src: url('/fonts/static/InstrumentSans-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'InstrumentSans';
-  src: url('/fonts/static/InstrumentSans-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'InstrumentSans';
-  src: url('/fonts/static/InstrumentSans-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
 body {
-  font-family: 'InstrumentSans', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
 }
