@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Users } from '../types/types';
 import useAuthStore from './useAuthStore';
-import apiGetUsers from '../service/apiGet';
+import apiGetUsers from '../service/apiData';
 
 interface useRouterDataState {
   user: Users | null;
@@ -15,7 +15,7 @@ interface useRouterDataState {
  * Zustand store for managing media data and user interactions.
  * @returns {MediaDataState} The current media data state and actions to modify it.
  */
-const useMediaStore = create<useRouterDataState>((set) => ({
+const useUserStore = create<useRouterDataState>((set) => ({
   user: null,
   media: [],
   bookmarked: [],
@@ -34,11 +34,11 @@ const useMediaStore = create<useRouterDataState>((set) => ({
    */
   fetchData: async (): Promise<void> => {
     const { userId } = useAuthStore.getState();
+
     set({ loading: true, error: null });
     try {
       const { users } = await apiGetUsers();
       const user = users.find((u) => u._id === userId) || null;
-
       set({ user, loading: false });
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -50,4 +50,4 @@ const useMediaStore = create<useRouterDataState>((set) => ({
   },
 }));
 
-export default useMediaStore;
+export default useUserStore;

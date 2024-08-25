@@ -15,11 +15,11 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const { email, password } = await request.json();
     const client = await clientPromise;
-    const db = client.db('web-app');
+    const db = client.db('link-sharing');
     const usersCollection = db.collection('users');
-    const user = await usersCollection.findOne({ email });
+    const user = await usersCollection.findOne({ 'credentials.email': email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && (await bcrypt.compare(password, user.credentials.password))) {
       const token = await new SignJWT({ email, userId: user._id })
         .setProtectedHeader({ alg: 'HS256' })
         .setExpirationTime('1h')
@@ -37,7 +37,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         sameSite: 'strict',
       });
 
-      response.cookies.set('userId', String(user._id), {
+      response.cookies.set('userId', user._id.toString(), {
         httpOnly: false,
         secure: true,
         path: '/',

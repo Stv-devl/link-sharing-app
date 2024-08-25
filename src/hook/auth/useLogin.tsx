@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import useAuthStore from '../../store/useAuthStore';
 import apiLogin from '../../service/apiLogin';
 import { FormDataLogin, UseLoginReturn } from '../../types/types';
-import { loginSchema } from '@/src/shema/validationShema';
+import { loginSchema } from '../../utils/validationShema';
 import * as Yup from 'yup';
 /**
  * Custom hook for handling login functionality.

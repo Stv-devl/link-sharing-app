@@ -4,7 +4,7 @@ import { FormEvent, useCallback, useState } from 'react';
 import apiSignup from '../../service/apiSignup';
 import { FormDataSignUp, UseSignUpReturn } from '../../types/types';
 import { useRouter } from 'next/navigation';
-import { signupValidationSchema } from '@/src/shema/validationShema';
+import { signupValidationSchema } from '../../utils/validationShema';
 import * as Yup from 'yup';
 
 /**
