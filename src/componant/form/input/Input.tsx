@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { InputProps } from '../../../types/types';
+import Image from 'next/image';
 
 /**
  * Renders an input field with dynamic border styling and optional error message.
@@ -14,39 +15,47 @@ const Input: React.FC<InputProps> = ({
   type,
   handleChange,
   value,
+  label,
   placeholder,
   error,
   autoComplete,
+  iconSrc,
 }: InputProps) => {
-  const borderClass = error
-    ? 'border-[#FC4747] focus:border-[#FC4747]'
-    : name === 'search'
-    ? value.length > 0
-      ? 'focus:border-custom-border-color'
-      : 'border-none'
-    : 'border-custom-border-color focus:border-white';
+  const borderSetting =
+    error && error.length > 0 ? 'border-error-border' : 'border-input-border';
 
   return (
     <>
-      <input
-        className={`w-full border-b ${borderClass}   
-          ${
-            name === 'search'
-              ? 'bg-[#10141E] text-base sm:text-2xl placeholder:text-base sm:placeholder:text-2xl'
-              : 'bg-[#161D2F] placeholder:text-base'
-          }  
-          focus:outline-none placeholder:text-gray-5m00 sm:pl-[10px] pl-[5px] h-[36px]`}
-        type={type}
-        id={name}
-        name={name}
-        value={value}
-        onChange={handleChange}
-        placeholder={placeholder}
-        autoComplete={autoComplete}
-      />
-      {error && error !== 'loginerror' && (
-        <span className="text-[#FC4747]">{error}</span>
-      )}
+      <label
+        htmlFor={name}
+        className={`text-xs  ${
+          error && error.length > 0 ? 'text-medium-red' : 'text-dark-gray'
+        } `}
+      >
+        {label}
+      </label>
+      <div className="relative w-full">
+        <Image
+          src={iconSrc}
+          alt={`${name} icon`}
+          width={16}
+          height={16}
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 "
+        />
+        <input
+          className={`w-full border bg-white placeholder:text-medium-gray pl-10 h-[48px] rounded-lg focus:outline-none ${borderSetting} focus:border-focus-border focus:shadow-custom-purple`}
+          type={type}
+          id={name}
+          name={name}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+        />
+        {error && error !== 'loginerror' && (
+          <span className="text-[#FC4747]">{error}</span>
+        )}
+      </div>
     </>
   );
 };

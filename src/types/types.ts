@@ -28,9 +28,11 @@ export interface InputProps {
   type: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  label: string;
   placeholder?: string;
   error?: string;
   autoComplete: string;
+  iconSrc: string;
 }
 
 export interface FormDataLogin {
@@ -56,4 +58,9 @@ export interface UseSignUpReturn {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formData: FormDataSignUp;
   signupErrors: string;
+}
+
+export interface ButtonComponent {
+  label: string;
+  style: string;
 }

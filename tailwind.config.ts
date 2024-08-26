@@ -4,18 +4,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background-black': '#10141E',
-        'background-light-black': '#161D2F',
-        'text-red': '#FC4747',
-        'custom-border-color': '#5A698F',
-        'icon-black': '#000000',
+        'dark-purple': '#633CFF',
+        'light-purple': '#BEADFF',
+        'lightest-purple': '#EFEBFF',
+        'dark-gray': '#333333',
+        'medium-gray': '#737373',
+        'light-gray': '#D9D9D9',
+        'background-white': '#FAFAFA',
+        'medium-red': '#FF3939',
       },
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
+        Instrument: ['Instrument Sans', 'sans-serif'],
       },
-      border: {
-        'border-bottom': '1px solid #5A698F',
-        'border-bottom-error': '1px solid #FC4747',
+      fontSize: {
+        title: ['32px', { fontWeight: '700' }],
+      },
+      borderColor: {
+        'input-border': '#D9D9D9',
+        'focus-border': '#633CFF',
+        'error-border': '#FF3939',
+      },
+      boxShadow: {
+        'custom-purple': '0px 0px 32px 0px rgba(99, 60, 255, 0.25)',
       },
       transitionProperty: {
         fill: 'fill',
