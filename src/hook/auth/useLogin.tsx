@@ -22,7 +22,10 @@ const useLogin = (): UseLoginReturn => {
     email: '',
     password: '',
   });
-  const [loginErrors, setLoginErrors] = useState<string>('');
+  const [loginErrors, setLoginErrors] = useState<FormDataLogin>({
+    email: '',
+    password: '',
+  });
 
   const login = useAuthStore((state) => state.login);
   const router = useRouter();
@@ -34,7 +37,7 @@ const useLogin = (): UseLoginReturn => {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setLoginErrors('');
+    setLoginErrors({ email: '', password: '' });
   }, []);
 
   /**
@@ -53,10 +56,14 @@ const useLogin = (): UseLoginReturn => {
       router.push('/home');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        setLoginErrors(error.errors.join(', '));
+        const fieldErrors = error.inner.reduce((acc, err) => {
+          if (err.path) acc[err.path as keyof FormDataLogin] = err.message;
+          return acc;
+        }, {} as FormDataLogin);
+        setLoginErrors(fieldErrors);
       } else {
         console.error('Login failed:', error);
-        setLoginErrors('Failed to log in');
+        setLoginErrors((prev) => ({ ...prev, general: 'Failed to log in' }));
       }
     }
   };

@@ -44,7 +44,7 @@ export interface UseLoginReturn {
   handleSubmit: (e: FormEvent) => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formData: FormDataLogin;
-  loginErrors: string;
+  loginErrors: FormDataLogin;
 }
 
 export interface FormDataSignUp {
@@ -57,7 +57,7 @@ export interface UseSignUpReturn {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formData: FormDataSignUp;
-  signupErrors: string;
+  signupErrors: FormDataSignUp;
 }
 
 export interface ButtonComponent {

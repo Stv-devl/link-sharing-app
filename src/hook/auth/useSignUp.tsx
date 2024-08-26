@@ -10,7 +10,6 @@ import * as Yup from 'yup';
 /**
  * Custom hook for handling user sign-up functionality.
  * Manages form state, validates form data, and submits the sign-up request.
- *
  * @returns {UseSignUpReturn} An object containing:
  * - `handleSubmit`: Function to handle form submission for signing up a new user.
  * - `handleChange`: Function to handle changes to the form inputs.
@@ -24,7 +23,12 @@ const useSignUp = (): UseSignUpReturn => {
     password: '',
     repeat: '',
   });
-  const [signupErrors, setSignupErrors] = useState<string>('');
+
+  const [signupErrors, setSignupErrors] = useState<FormDataSignUp>({
+    email: '',
+    password: '',
+    repeat: '',
+  });
   const router = useRouter();
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,11 +37,12 @@ const useSignUp = (): UseSignUpReturn => {
       ...prevFormData,
       [name]: value,
     }));
+    setSignupErrors({ email: '', password: '', repeat: '' });
   }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSignupErrors('');
+    setSignupErrors({ email: '', password: '', repeat: '' });
     try {
       await signupValidationSchema.validate(formData, { abortEarly: false });
       const newUser = await apiSignup(formData.email, formData.password);
@@ -45,10 +50,17 @@ const useSignUp = (): UseSignUpReturn => {
       router.push('/login');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        setSignupErrors(error.errors.join(', '));
+        const fieldErrors = error.inner.reduce((acc, err) => {
+          if (err.path) acc[err.path as keyof FormDataSignUp] = err.message;
+          return acc;
+        }, {} as FormDataSignUp);
+        setSignupErrors(fieldErrors);
       } else {
         console.error('Signup failed:', error);
-        setSignupErrors('Signup process encountered an error');
+        setSignupErrors((prev) => ({
+          ...prev,
+          general: 'Signup process encountered an error',
+        }));
       }
     }
   };

@@ -21,16 +21,13 @@ const Input: React.FC<InputProps> = ({
   autoComplete,
   iconSrc,
 }: InputProps) => {
-  const borderSetting =
-    error && error.length > 0 ? 'border-error-border' : 'border-input-border';
+  const borderSetting = error ? 'border-error-border' : 'border-input-border';
 
   return (
     <>
       <label
         htmlFor={name}
-        className={`text-xs  ${
-          error && error.length > 0 ? 'text-medium-red' : 'text-dark-gray'
-        } `}
+        className={`text-xs  ${error ? 'text-medium-red' : 'text-dark-gray'} `}
       >
         {label}
       </label>
@@ -52,8 +49,10 @@ const Input: React.FC<InputProps> = ({
           placeholder={placeholder}
           autoComplete={autoComplete}
         />
-        {error && error !== 'loginerror' && (
-          <span className="text-[#FC4747]">{error}</span>
+        {error && (
+          <span className="text-medium-red absolute right-3 top-1/2 transform -translate-y-1/2">
+            {error}
+          </span>
         )}
       </div>
     </>

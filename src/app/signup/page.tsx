@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import React from 'react';
@@ -5,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useSignUp from '../../hook/auth/useSignUp';
 import Input from '../../componant/form/input/Input';
+import Button from '@/componant/button/Button';
 
 /**
  * The SignUp component renders a sign-up form where users can create a new account.
@@ -18,10 +20,17 @@ const SignUp = (): JSX.Element => {
   const { handleSubmit, handleChange, formData, signupErrors } = useSignUp();
 
   return (
-    <section className="flex flex-col items-center gap-[83px] min-h-screen">
-      <div className="flex flex-col justify-center items-start gap-[40px] px-[32px] py-[32px] mx-[5%] w-full max-w-[400px] bg-[#161D2F] rounded-[15px] ">
-        <h1 className="text-[32px]">Create account</h1>
-        <p>Let's get you started sharing your links!</p>
+    <section className="flex flex-col items-center gap-[51px]">
+      <Image
+        src="/images/logo-devlinks-large.svg"
+        alt="logo title login"
+        width={183}
+        height={40}
+        priority
+      />
+      <div className="flex flex-col items-start p-[40px] w-[476px]  bg-white">
+        <h1 className="text-title text-dark-gray">Create account</h1>
+        <p className="mt-4 mb-8">Let's get you started sharing your links!</p>
         <form
           className="flex flex-col gap-[20px] w-full"
           onSubmit={handleSubmit}
@@ -29,48 +38,51 @@ const SignUp = (): JSX.Element => {
           <div className="input-wrapper">
             <Input
               name="email"
-              placeholder="Email"
-              type="email"
+              label="Email adress"
+              placeholder="e.g. alex@email.com"
+              type="text"
               handleChange={handleChange}
               value={formData.email}
-              error={signupErrors}
+              error={signupErrors.email}
               autoComplete={'email'}
+              iconSrc={'/images/icon-email.svg'}
             />
           </div>
           <div className="input-wrapper">
             <Input
               name="password"
-              placeholder="Password"
+              label="Password"
+              placeholder="At least 8 characters"
               type="password"
               handleChange={handleChange}
               value={formData.password}
-              error={signupErrors}
+              error={signupErrors.password}
               autoComplete={'new-password'}
+              iconSrc={'/images/icon-password.svg'}
             />
           </div>
           <div className="input-wrapper">
             <Input
               name="repeat"
-              placeholder="Repeat password"
+              label="Confirm password"
+              placeholder="At least 8 characters"
               type="password"
               handleChange={handleChange}
               value={formData.repeat}
-              error={signupErrors}
+              error={signupErrors.repeat}
               autoComplete={'new-password'}
+              iconSrc={'/images/icon-password.svg'}
             />
           </div>
-          <p>Password must contain at least 8 characters</p>
-
-          <button
-            type="submit"
-            className="bg-[#FC4747] duration-500 ease-in-out hover:bg-slate-50 hover:text-black text-base w-full h-[48px] rounded-lg"
-          >
-            Create new account
-          </button>
+          <p className="text-xs">Password must contain at least 8 characters</p>
+          <Button
+            label={'Create a new account'}
+            style={'bg-dark-purple w-full h-[46px]'}
+          />
           <p className="text-base px-[5%] sm:px-[10%]">
             Already have an account?{' '}
             <Link href="/login">
-              <span className="text-[#FC4747] text-base ml-[5px]">Login</span>
+              <span className="text-dark-purple">Login</span>
             </Link>
           </p>
         </form>

@@ -17,7 +17,6 @@ import Button from '@/componant/button/Button';
 
 const Login = (): JSX.Element => {
   const { handleSubmit, handleChange, formData, loginErrors } = useLogin();
-
   return (
     <section className="flex flex-col items-center gap-[51px]">
       <Image
@@ -27,7 +26,6 @@ const Login = (): JSX.Element => {
         height={40}
         priority
       />
-
       <div className="flex flex-col items-start gap-[40px] p-[40px] w-[476px]  bg-white">
         <div className="flex flex-col gap-[24px]">
           <h1 className="text-title text-dark-gray">Login</h1>
@@ -46,7 +44,7 @@ const Login = (): JSX.Element => {
                 type="text"
                 handleChange={handleChange}
                 value={formData.email}
-                error={loginErrors ? `loginerror` : ''}
+                error={loginErrors.email}
                 autoComplete={'email'}
                 iconSrc={'/images/icon-email.svg'}
               />
@@ -59,14 +57,16 @@ const Login = (): JSX.Element => {
                 type="password"
                 handleChange={handleChange}
                 value={formData.password}
-                error={loginErrors ? `loginerror` : ''}
+                error={loginErrors.password}
                 autoComplete={'current-password'}
                 iconSrc={'/images/icon-password.svg'}
               />
+              {/*ajouter ce message quand donnnées pas dans data base*/}
+              {/* 
               <span className=" text-medium-red">
                 {loginErrors &&
                   `We don't find your information in our database`}
-              </span>
+              </span>*/}
             </div>
           </div>
           <Button label={'Login'} style={'bg-dark-purple w-full h-[46px]'} />
