@@ -1,5 +1,5 @@
 'use client';
-import withAuth from '@/src/componant/form/withAuth/WithAuth';
+import withAuth from '../../../componant/withAuth/WithAuth';
 import React from 'react';
 
 const Preview = () => {

@@ -42,7 +42,6 @@ const useSignUp = (): UseSignUpReturn => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSignupErrors({ email: '', password: '', repeat: '' });
     try {
       await signupValidationSchema.validate(formData, { abortEarly: false });
       const newUser = await apiSignup(formData.email, formData.password);

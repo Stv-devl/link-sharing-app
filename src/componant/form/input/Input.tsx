@@ -27,7 +27,7 @@ const Input: React.FC<InputProps> = ({
     <>
       <label
         htmlFor={name}
-        className={`text-xs  ${error ? 'text-medium-red' : 'text-dark-gray'} `}
+        className={`text-xs ${error ? 'text-medium-red' : 'text-dark-gray'}`}
       >
         {label}
       </label>
@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({
           alt={`${name} icon`}
           width={16}
           height={16}
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 "
+          className="absolute left-3 top-1/2 transform -translate-y-1/2"
         />
         <input
           className={`w-full border bg-white placeholder:text-medium-gray pl-10 h-[48px] rounded-lg focus:outline-none ${borderSetting} focus:border-focus-border focus:shadow-custom-purple`}
@@ -50,7 +50,9 @@ const Input: React.FC<InputProps> = ({
           autoComplete={autoComplete}
         />
         {error && (
-          <span className="text-medium-red absolute right-3 top-1/2 transform -translate-y-1/2">
+          <span
+            className={`text-medium-red relative sm:absolute right-0 sm:right-3 top-auto sm:top-1/2 transform-none sm:transform sm:-translate-y-1/2  error-message-small-screen`}
+          >
             {error}
           </span>
         )}

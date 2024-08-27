@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect } from 'react';
-import useUserStore from '@/src/store/useUsersStore';
-import Loading from '@/src/componant/loading/Loading';
-import withAuth from '@/src/componant/form/withAuth/WithAuth';
-import Error from '@/src/componant/error/Error';
+import useUserStore from '../../../store/useUsersStore';
+import Loading from '../../../componant/loading/Loading';
+import withAuth from '../../../componant/withAuth/WithAuth';
+import Error from '../../../componant/error/Error';
 
 const Home = () => {
   const { user, loading, error, fetchData } = useUserStore();

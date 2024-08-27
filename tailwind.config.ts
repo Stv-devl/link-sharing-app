@@ -18,6 +18,7 @@ module.exports = {
       },
       fontSize: {
         title: ['32px', { fontWeight: '700' }],
+        titleSmall: ['24px', { fontWeight: '700' }],
       },
       borderColor: {
         'input-border': '#D9D9D9',

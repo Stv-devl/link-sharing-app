@@ -12,8 +12,8 @@ export default function RootLayout({
         <title>Link-sharing-app</title>
         <meta name="description" content="link sharing app" />
       </head>
-      <body className="flex justify-center h-screen w-full bg-background-white text-medium-gray text-[16px] text-base leading-6	 ">
-        <main className="flex items-center">{children}</main>
+      <body className="h-screen w-full text-medium-gray text-[16px] text-base leading-6	 ">
+        <main className="h-screen w-full ">{children}</main>
       </body>
     </html>
   );
