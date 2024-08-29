@@ -1,15 +1,7 @@
 import { create } from 'zustand';
-import { Users } from '../types/types';
+import { useRouterDataState, Users } from '../types/types';
 import useAuthStore from './useAuthStore';
 import apiGetUsers from '../service/apiData';
-
-interface useRouterDataState {
-  user: Users | null;
-  loading: boolean;
-  error: string | null;
-  fetchData: () => Promise<void>;
-  setUser: (user: Users) => void;
-}
 
 /**
  * Zustand store for managing media data and user interactions.

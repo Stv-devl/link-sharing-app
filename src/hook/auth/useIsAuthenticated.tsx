@@ -1,20 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import apiVerify from '../../service/apiVerify';
+import useAuthStore from '../../store/useAuthStore';
 
 /**
- * Custom hook to check if the user is authenticated.
- * It uses an API call to verify the authentication status and stores the result in a state.
- * @returns {{ isAuthenticated: boolean | null, setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | null>> }}
- * An object containing the authentication status and a setter function to update it.
+ * Custom hook to handle authentication and logout functionality.
+ * It checks the authentication status and provides a logout function.
+ * An object containing the authentication status and a logout function.
  */
-
-const useIsAuthenticated = (): {
-  isAuthenticated: boolean | null;
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean | null>>;
-} => {
+const useIsAuthenticated = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const { logout } = useAuthStore((state) => ({ logout: state.logout }));
+  const router = useRouter();
 
   useEffect(() => {
     const verifyAuth = async () => {
@@ -25,7 +24,21 @@ const useIsAuthenticated = (): {
     verifyAuth();
   }, []);
 
-  return { isAuthenticated, setIsAuthenticated };
+  const handleLogout = useCallback(async () => {
+    logout();
+    const res = await fetch('/api/logout', {
+      method: 'POST',
+    });
+    if (res.ok) {
+      setIsAuthenticated(false);
+      console.log('Logged out successfully');
+      router.push('/login');
+    } else {
+      console.error('Failed to log out');
+    }
+  }, [logout, router]);
+
+  return { isAuthenticated, handleLogout };
 };
 
 export default useIsAuthenticated;

@@ -1,18 +1,11 @@
 import { create } from 'zustand';
 import Cookies from 'js-cookie';
-
-interface AuthState {
-  token: string | null;
-  userId: string | null;
-  login: (token: string, userId: string) => void;
-  logout: () => void;
-}
+import { AuthState } from '@/types/types';
 
 /**
  * Zustand store for managing user authentication state.
  * @returns {AuthState} The current authentication state and actions to modify it.
  */
-
 const useAuthStore = create<AuthState>((set) => ({
   token: Cookies.get('token') || null,
   userId: Cookies.get('userId') || null,

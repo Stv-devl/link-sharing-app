@@ -1,20 +1,16 @@
-import '../global.css';
 import React from 'react';
+import '../global.css';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <head>
-        <title>Link-sharing-app</title>
-        <meta name="description" content="link sharing app" />
-      </head>
-      <body className="h-screen w-full text-medium-gray text-[16px] text-base leading-6	 ">
-        <main className="h-screen w-full ">{children}</main>
-      </body>
-    </html>
-  );
-}
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <html lang="en">
+    <head>
+      <title>Link-sharing-app</title>
+      <meta name="description" content="link sharing app" />
+    </head>
+    <body className="h-screen w-full text-medium-gray bg-background-white text-[16px] text-base leading-6 max-w-[1650px]">
+      {children}
+    </body>
+  </html>
+);
+
+export default RootLayout;

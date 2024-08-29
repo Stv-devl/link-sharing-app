@@ -2,11 +2,11 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import useSignUp from '../../hook/auth/useSignUp';
 import Input from '../../componant/form/input/Input';
 import Button from '@/componant/button/Button';
+import IconLinkLarge from '../../componant/icon/assets/logo-devlinks-large.svg';
 
 /**
  * The SignUp component renders a sign-up form where users can create a new account.
@@ -19,16 +19,13 @@ import Button from '@/componant/button/Button';
 const SignUp = (): JSX.Element => {
   const { handleSubmit, handleChange, formData, signupErrors } = useSignUp();
 
+  //ajouter vérification si email déjà dans base de donnée
   return (
     <section className="flex flex-col bg-white  sm:bg-background-white justify-center w-full h-full">
       <div className=" flex flex-col items-center gap-[51px] w-full px-[5%] sm:px-[0]">
-        <Image
-          src="/images/logo-devlinks-large.svg"
-          alt="logo title login"
-          width={183}
-          height={40}
-          priority
-        />
+        <div className="w-[130px] h-[40px] lg:w-[183px] lg:h-[40px]">
+          <IconLinkLarge className="w-full h-full max-w-full max-h-full" />
+        </div>
         <div className="flex flex-col items-start gap-[40px] sm:p-[40px] sm:w-[476px]  bg-white">
           <h1 className=" text-titleSmall sm:text-title text-dark-gray">
             Create account
@@ -80,10 +77,7 @@ const SignUp = (): JSX.Element => {
             <p className="text-xs">
               Password must contain at least 8 characters
             </p>
-            <Button
-              label={'Create a new account'}
-              style={'bg-dark-purple w-full h-[46px]'}
-            />
+            <Button label={'Create a new account'} />
             <p className="text-base px-[5%] sm:px-[10%] text-center ">
               Already have an account?{' '}
               <Link href="/login">

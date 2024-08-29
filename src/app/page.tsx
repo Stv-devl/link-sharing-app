@@ -3,8 +3,6 @@
 import React from 'react';
 import Home from './(dashboard)/home/page';
 
-const Index = () => {
-  return <Home />;
-};
+const Index: React.FC = () => <Home />;
 
 export default Index;

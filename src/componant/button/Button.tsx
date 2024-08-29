@@ -1,11 +1,17 @@
 import { ButtonComponent } from '@/types/types';
 import React from 'react';
 
-const Button: React.FC<ButtonComponent> = ({ label, style }) => {
+const Button: React.FC<ButtonComponent> = ({ label, onClick }) => {
+  const colorStyle =
+    label === '+ Add new link'
+      ? 'bg-white text-dark-purple hover:bg-lightest-purple'
+      : 'bg-dark-purple text-white hover:bg-light-purple ';
+
   return (
     <button
       type="submit"
-      className={`${style} duration-500 ease-in-out hover:bg-light-purple text-white font-semibold w-full rounded-lg`}
+      onClick={onClick}
+      className={`${colorStyle} duration-500 ease-in-out font-semibold rounded-lg w-full h-[46px]`}
     >
       {label}
     </button>

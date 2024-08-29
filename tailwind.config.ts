@@ -40,6 +40,9 @@ module.exports = {
       animation: {
         spin: 'spin 2.5s linear infinite',
       },
+      screens: {
+        btab: '700x',
+      },
     },
   },
   plugins: [],

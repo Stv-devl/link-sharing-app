@@ -23,6 +23,21 @@ export interface Users {
   };
 }
 
+export interface AuthState {
+  token: string | null;
+  userId: string | null;
+  login: (token: string, userId: string) => void;
+  logout: () => void;
+}
+
+export interface useRouterDataState {
+  user: Users | null;
+  loading: boolean;
+  error: string | null;
+  fetchData: () => Promise<void>;
+  setUser: (user: Users) => void;
+}
+
 export interface InputProps {
   name: string;
   type: string;
@@ -62,5 +77,16 @@ export interface UseSignUpReturn {
 
 export interface ButtonComponent {
   label: string;
-  style: string;
+  onClick?: (e: FormEvent) => void;
+}
+
+export interface IconWrapperType {
+  type: string;
+  isSelected: boolean;
+  link: string;
+}
+
+export interface PreviewBtnType {
+  href: string;
+  label: string;
 }

@@ -3,9 +3,9 @@
 import React from 'react';
 import useLogin from '../../hook/auth/useLogin';
 import Input from '../../componant/form/input/Input';
-import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/componant/button/Button';
+import IconLinkLarge from '../../componant/icon/assets/logo-devlinks-large.svg';
 
 /**
  * The Login component renders a login form where users can enter their email and password to access their account.
@@ -20,13 +20,10 @@ const Login = (): JSX.Element => {
   return (
     <section className="flex flex-col bg-white sm:bg-background-white justify-center w-full h-screen">
       <div className=" flex flex-col items-center gap-[51px] w-full px-[8%] sm:px-[0]">
-        <Image
-          src="/images/logo-devlinks-large.svg"
-          alt="logo title login"
-          width={183}
-          height={40}
-          priority
-        />
+        <div className="w-[130px] h-[40px] lg:w-[183px] lg:h-[40px]">
+          <IconLinkLarge className="w-full h-full max-w-full max-h-full" />
+        </div>
+
         <div className="flex flex-col items-start gap-[40px] sm:p-[40px] sm:w-[476px]  bg-white">
           <div className="flex flex-col gap-[24px]">
             <h1 className=" text-titleSmall sm:text-title text-dark-gray">
@@ -72,7 +69,7 @@ const Login = (): JSX.Element => {
               </span>*/}
               </div>
             </div>
-            <Button label={'Login'} style={'bg-dark-purple w-full h-[46px]'} />
+            <Button label={'Login'} />
             <p className="text-base px-[5%] sm:px-[10%] text-center ">
               Don&apos;t have an account?{' '}
               <Link href="/signup">
