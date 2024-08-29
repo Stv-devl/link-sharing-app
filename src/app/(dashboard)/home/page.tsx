@@ -5,9 +5,11 @@ import Loading from '../../../componant/loading/Loading';
 import withAuth from '../../../componant/withAuth/WithAuth';
 import Error from '../../../componant/error/Error';
 import MainLayout from '@/componant/layout/MainLayout';
+import MobileContainer from '@/componant/mobileContainer/MobileContainer';
+import SettingContainer from '@/componant/settingContainer/SettingContainer';
 
 const Home: React.FC = () => {
-  const { user, loading, error, fetchData } = useUserStore();
+  const { loading, error, fetchData } = useUserStore();
 
   useEffect(() => {
     fetchData();
@@ -18,7 +20,14 @@ const Home: React.FC = () => {
 
   return (
     <MainLayout>
-      <div></div>
+      <div className="flex gap-5 mx-auto sm:w-[95%] h-[90%]">
+        <div className="bg-white lg:block w-[45%] h-full hidden rounded-lg">
+          <MobileContainer />
+        </div>
+        <div className="bg-white w-full lg:w-[60%] h-full rounded-lg">
+          <SettingContainer type={'links'} />
+        </div>
+      </div>
     </MainLayout>
   );
 };

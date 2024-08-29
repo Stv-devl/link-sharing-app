@@ -90,3 +90,7 @@ export interface PreviewBtnType {
   href: string;
   label: string;
 }
+
+export interface SettingContainerType {
+  type: string;
+}
