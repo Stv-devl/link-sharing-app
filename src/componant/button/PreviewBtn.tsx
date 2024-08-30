@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import IconPreview from '../icon/assets/icon-preview-header.svg';
+import IconPreview from '../iconWrappers/assets/icon-preview-header.svg';
 import { PreviewBtnType } from '@/types/types';
 
 const PreviewBtn: React.FC<PreviewBtnType> = ({ href, label }) => {

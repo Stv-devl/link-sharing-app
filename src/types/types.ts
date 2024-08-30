@@ -1,28 +1,41 @@
 import { FormEvent } from 'react';
 
+//.............................//
+//.........data types..........//
+//.............................//
 export interface Users {
   _id: string;
   credentials: {
     email: string;
     password: string;
   };
-  links?: {
-    github: string;
-    youtube: string;
-    linkedIn: string;
-    frontend: string;
-    twitter: string;
-    facebook: string;
-    twitch: string;
-    devto: string;
-    codewars: string;
-    codepen: string;
-    freecodecamp: string;
-    gitlab: string;
-    hashnode: string;
+  links: {
+    github: LinkDetail;
+    youtube: LinkDetail;
+    linkedIn: LinkDetail;
+    frontend: LinkDetail;
+    twitter: LinkDetail;
+    facebook: LinkDetail;
+    twitch: LinkDetail;
+    devto: LinkDetail;
+    codewars: LinkDetail;
+    codepen: LinkDetail;
+    freecodecamp: LinkDetail;
+    gitlab: LinkDetail;
+    hashnode: LinkDetail;
   };
 }
 
+interface LinkDetail {
+  isSelected: boolean;
+  url: string;
+  label: string;
+  color: string;
+}
+
+//.............................//
+//.........store types.........//
+//.............................//
 export interface AuthState {
   token: string | null;
   userId: string | null;
@@ -38,18 +51,9 @@ export interface useRouterDataState {
   setUser: (user: Users) => void;
 }
 
-export interface InputProps {
-  name: string;
-  type: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  label: string;
-  placeholder?: string;
-  error?: string;
-  autoComplete: string;
-  iconSrc: string;
-}
-
+//.............................//
+//.........form types..........//
+//.............................//
 export interface FormDataLogin {
   email: string;
   password: string;
@@ -74,6 +78,20 @@ export interface UseSignUpReturn {
   formData: FormDataSignUp;
   signupErrors: FormDataSignUp;
 }
+//.............................//
+//.......component type........//
+//.............................//
+export interface InputProps {
+  name: string;
+  type: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  label: string;
+  placeholder?: string;
+  error?: string;
+  autoComplete: string;
+  iconSrc: string;
+}
 
 export interface ButtonComponent {
   label: string;
@@ -93,4 +111,17 @@ export interface PreviewBtnType {
 
 export interface SettingContainerType {
   type: string;
+}
+
+export interface LinkPaginationProps {
+  pages: unknown[][];
+  pageNumbers: number[];
+  currentPage: number;
+  setCurrentPage: (newPage: number) => void;
+}
+
+type LinkArray = [string, LinkDetail];
+
+export interface LinkCardProps {
+  displayLinks: LinkArray[];
 }

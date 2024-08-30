@@ -7,7 +7,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       <title>Link-sharing-app</title>
       <meta name="description" content="link sharing app" />
     </head>
-    <body className="h-screen w-full text-medium-gray bg-background-white text-[16px] text-base leading-6 max-w-[1650px]">
+    <body className="text-medium-gray bg-background-white text-4 text-base leading-6 w-full max-w-[1950px] h-screen ">
       {children}
     </body>
   </html>

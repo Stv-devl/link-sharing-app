@@ -3,9 +3,9 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import useIsAuthenticated from '@/hook/auth/useIsAuthenticated';
-import LogoWrapper from '../icon/wrappers/LogoWrapper';
-import NavWrapper from '../icon/wrappers/NavWrapper';
-import LogoutWrapper from '../icon/wrappers/LogoutWrapper';
+import LogoWrapper from '../iconWrappers/LogoWrapper';
+import NavWrapper from '../iconWrappers/NavWrapper';
+import LogoutWrapper from '../iconWrappers/LogoutWrapper';
 import PreviewBtn from '../button/PreviewBtn';
 
 const Banner = () => {

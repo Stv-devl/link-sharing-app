@@ -4,9 +4,7 @@ import Banner from '../banner/Banner';
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <main className="h-screen w-full">
     <Banner />
-    <section className="bg-background-white w-full h-screen">
-      {children}
-    </section>
+    <section className="w-full h-[86%] px-[4%] sm:px-0 ">{children}</section>
   </main>
 );
 

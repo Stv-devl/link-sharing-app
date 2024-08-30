@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import IconLinkLarge from '../../icon/assets/logo-devlinks-large.svg';
-import IconLinkSmall from '../../icon/assets/logo-devlinks-small.svg';
+import IconLinkLarge from '../iconWrappers/assets/logo-devlinks-large.svg';
+import IconLinkSmall from '../iconWrappers/assets/logo-devlinks-small.svg';
 
 const LogoWrapper: React.FC = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: '(min-width: 640px)' });

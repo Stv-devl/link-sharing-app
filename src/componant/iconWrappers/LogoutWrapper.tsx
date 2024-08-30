@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoutIcon from '../../icon/assets/icon-logout.svg';
+import LogoutIcon from '../iconWrappers/assets/icon-logout.svg';
 
 /**
  * Renders a serie icon with dynamic color based on selection state.

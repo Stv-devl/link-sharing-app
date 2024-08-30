@@ -6,7 +6,7 @@ import Link from 'next/link';
 import useSignUp from '../../hook/auth/useSignUp';
 import Input from '../../componant/form/input/Input';
 import Button from '@/componant/button/Button';
-import IconLinkLarge from '../../componant/icon/assets/logo-devlinks-large.svg';
+import IconLinkLarge from '../../componant/iconWrappers/assets/logo-devlinks-large.svg';
 
 /**
  * The SignUp component renders a sign-up form where users can create a new account.

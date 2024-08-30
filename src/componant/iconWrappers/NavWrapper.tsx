@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import IconLinkSvg from '../../icon/assets/icon-link.svg';
-import IconProfilSvg from '../../icon/assets/icon-profile-details-header.svg';
+import IconLinkSvg from '../iconWrappers/assets/icon-link.svg';
+import IconProfilSvg from '../iconWrappers/assets/icon-profile-details-header.svg';
 import { IconWrapperType } from '@/types/types';
 
 const NavWrapper: React.FC<IconWrapperType> = ({ type, isSelected, link }) => {
