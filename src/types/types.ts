@@ -114,7 +114,7 @@ export interface SettingContainerType {
 }
 
 export interface LinkPaginationProps {
-  pages: unknown[][];
+  pages: LinkArray[][];
   pageNumbers: number[];
   currentPage: number;
   setCurrentPage: (newPage: number) => void;
@@ -124,4 +124,16 @@ type LinkArray = [string, LinkDetail];
 
 export interface LinkCardProps {
   displayLinks: LinkArray[];
+}
+
+export interface usePaginationProps {
+  items: LinkArray[];
+  itemsPerPage: number;
+}
+
+export interface UsePaginationReturn {
+  pages: LinkArray[][];
+  pageNumbers: number[];
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }

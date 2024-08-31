@@ -1,21 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import LinkCard from '../links/LinkCard';
 import useUserStore from '@/store/useUsersStore';
 import LinkPagination from '../links/LinkPagination';
-import usePagination from '@/hook/data/usePagination';
+import useManageLinks from '@/hook/data/useManageLinks';
+import { usePathname } from 'next/navigation';
 
 const MobileContainer = () => {
   const { user } = useUserStore();
+  const pathname = usePathname();
 
-  const selectedLinks = useMemo(() => {
-    return user && user.links
-      ? Object.entries(user.links).filter(([, item]) => item.isSelected)
-      : [];
-  }, [user]);
-
-  const { pages, pageNumbers, currentPage, setCurrentPage } = usePagination(
-    selectedLinks,
+  const { pages, pageNumbers, currentPage, setCurrentPage } = useManageLinks(
+    user,
     5
   );
 
@@ -28,9 +24,14 @@ const MobileContainer = () => {
             alt=""
             width={308}
             height={632}
+            className="z-1"
             priority
           />
-          <div className="absolute left-9 top-[278px] w-60">
+          <div
+            className={`${
+              pathname === '/profile' ? 'bg-white z-2' : ''
+            } absolute left-8 top-[278px] w-60 h-1/2`}
+          >
             <LinkCard displayLinks={pages[currentPage]} />
           </div>
           <LinkPagination
