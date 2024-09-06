@@ -23,11 +23,15 @@ const Input: React.FC<InputProps> = ({
 }: InputProps) => {
   const borderSetting = error ? 'border-error-border' : 'border-input-border';
 
+  console.log(label);
+
   return (
     <>
       <label
         htmlFor={name}
-        className={`text-xs ${error ? 'text-medium-red' : 'text-dark-gray'}`}
+        className={`text-xs ${
+          error && label !== 'Link' ? 'text-medium-red' : 'text-dark-gray'
+        }`}
       >
         {label}
       </label>
@@ -40,7 +44,9 @@ const Input: React.FC<InputProps> = ({
           className="absolute left-3 top-1/2 transform -translate-y-1/2"
         />
         <input
-          className={`w-full border bg-white placeholder:text-medium-gray pl-10 h-[48px] rounded-lg focus:outline-none ${borderSetting} focus:border-focus-border focus:shadow-custom-purple`}
+          className={`w-full border bg-white placeholder:text-medium-gray pl-10 h-12 rounded-lg focus:outline-none ${borderSetting} focus:border-focus-border focus:shadow-custom-purple  ${
+            error ? 'text-medium-red' : 'text-dark-gray'
+          }`}
           type={type}
           id={name}
           name={name}
@@ -51,7 +57,7 @@ const Input: React.FC<InputProps> = ({
         />
         {error && (
           <span
-            className={`text-medium-red relative sm:absolute right-0 sm:right-3 top-auto sm:top-1/2 transform-none sm:transform sm:-translate-y-1/2  error-message-small-screen`}
+            className={`text-medium-red relative sm:absolute right-0 sm:right-3 top-auto sm:top-1/2 transform-none sm:transform sm:-translate-y-1/2  `}
           >
             {error}
           </span>

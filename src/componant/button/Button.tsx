@@ -4,7 +4,7 @@ import React from 'react';
 const Button: React.FC<ButtonComponent> = ({ label, onClick }) => {
   const colorStyle =
     label === '+ Add new link'
-      ? 'bg-white text-dark-purple hover:bg-lightest-purple'
+      ? 'bg-white text-dark-purple border border-dark-purple hover:bg-lightest-purple'
       : 'bg-dark-purple text-white hover:bg-light-purple ';
 
   return (

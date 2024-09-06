@@ -1,19 +1,21 @@
 import React from 'react';
 import Image from 'next/image';
-import LinkCard from '../links/LinkCard';
-import useUserStore from '@/store/useUsersStore';
-import LinkPagination from '../links/LinkPagination';
-import useManageLinks from '@/hook/data/useManageLinks';
+import LinkCard from '../links/display/LinkCard';
+import LinkPagination from '../links/display/LinkPagination';
 import { usePathname } from 'next/navigation';
+import useManagePagination from '@/hook/manage/useManagePagination';
+import useUserStore from '@/store/useUsersStore';
 
 const MobileContainer = () => {
-  const { user } = useUserStore();
-  const pathname = usePathname();
+  const { link } = useUserStore();
 
-  const { pages, pageNumbers, currentPage, setCurrentPage } = useManageLinks(
-    user,
-    5
-  );
+  const links = link || [];
+
+  const { pages, pageNumbers, currentPage, setCurrentPage } =
+    useManagePagination(links, 5);
+
+  const pathname = usePathname();
+  const isProfilPage = pathname === '/profile';
 
   return (
     <>
@@ -29,10 +31,10 @@ const MobileContainer = () => {
           />
           <div
             className={`${
-              pathname === '/profile' ? 'bg-white z-2' : ''
+              isProfilPage ? 'bg-white z-2' : ''
             } absolute left-8 top-[278px] w-60 h-1/2`}
           >
-            <LinkCard displayLinks={pages[currentPage]} />
+            <LinkCard formatedLinks={pages[currentPage]} />
           </div>
           <LinkPagination
             pages={pages}

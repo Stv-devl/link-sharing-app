@@ -1,45 +1,74 @@
 import { create } from 'zustand';
-import { useRouterDataState, Users } from '../types/types';
+import { useRouterDataState, LinkDetail, Users } from '../types/types';
 import useAuthStore from './useAuthStore';
 import apiGetUsers from '../service/apiData';
 
-/**
- * Zustand store for managing media data and user interactions.
- * @returns {MediaDataState} The current media data state and actions to modify it.
- */
+interface Link {
+  key: string;
+  label: string;
+  url: string;
+  color: string;
+}
+
 const useUserStore = create<useRouterDataState>((set) => ({
   user: null,
-  media: [],
-  bookmarked: [],
+  link: null,
   loading: false,
   error: null,
-  /**
-   * Sets the current user in the store.
-   * @param {Users} user - The user object to be set in the store.
-   */
+
   setUser: (user: Users) => set({ user }),
 
-  /**
-   * Fetches media and user data from the API, and updates the store.
-   * It filters the media items based on the user's bookmarked items.
-   * @returns {Promise<void>}
-   */
+  setLink: (link: LinkDetail[]) => set({ link }),
+
   fetchData: async (): Promise<void> => {
     const { userId } = useAuthStore.getState();
-
     set({ loading: true, error: null });
     try {
-      const { users } = await apiGetUsers();
-      const user = users.find((u) => u._id === userId) || null;
-      set({ user, loading: false });
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        set({ error: error.message, loading: false });
+      const response = await apiGetUsers();
+      const user = response.users.find((u) => u._id === userId) || null;
+      if (user && user.links) {
+        set({ user: user, link: user.links, loading: false });
       } else {
-        set({ error: 'An unknown error occurred', loading: false });
+        set({ user, loading: false });
       }
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error ? error.message : 'An unknown error occurred';
+      set({ error: errorMsg, loading: false });
     }
   },
+
+  addLink: (newLink: Link) =>
+    set((state) => ({
+      link: state.link ? [...state.link, newLink] : [newLink],
+    })),
+
+  updateLink: (
+    oldKey: string,
+    newKey: string,
+    label: string,
+    url: string,
+    color: string
+  ) =>
+    set((state) => {
+      if (!state.link) return state;
+      const updatedLinks = state.link.map((link) => {
+        if (link.key === oldKey) {
+          return { key: newKey, label, url, color };
+        }
+        return link;
+      });
+      console.log('Updated links array:', updatedLinks);
+      return {
+        ...state,
+        link: updatedLinks,
+      };
+    }),
+
+  removeLink: (linkKey: string) =>
+    set((state) => ({
+      link: state.link ? state.link.filter((link) => link.key !== linkKey) : [],
+    })),
 }));
 
 export default useUserStore;

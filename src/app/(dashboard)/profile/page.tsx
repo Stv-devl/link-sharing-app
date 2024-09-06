@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import withAuth from '../../../componant/withAuth/WithAuth';
-import MainLayout from '@/componant/layout/MainLayout';
+import MainLayout from '../../../layout/MainLayout';
 import MobileContainer from '@/componant/containers/MobileContainer';
 import SettingContainer from '@/componant/containers/SettingContainer';
 import Loading from '@/componant/loading/Loading';
@@ -26,7 +26,7 @@ const Profil = () => {
           <MobileContainer />
         </div>
         <div className="bg-white w-full lg:w-[60%] h-full rounded-lg">
-          <SettingContainer type={'profil'} />
+          <SettingContainer />
         </div>
       </div>
     </MainLayout>

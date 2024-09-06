@@ -20,8 +20,7 @@ const Preview = () => {
   return (
     <main className="h-screen w-full ">
       <PreviewBanner />
-      <section className="bg-background-white w-full h-screen">
-        </section>;
+      <section className="bg-background-white w-full h-screen"></section>;
     </main>
   );
 };

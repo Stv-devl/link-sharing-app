@@ -18,7 +18,6 @@ const apiData = async (): Promise<{ users: Users[] }> => {
         `Error fetching data from ${url}. Status: ${response.status}`
       );
     }
-
     const users: Users[] = await response.json();
 
     return { users };

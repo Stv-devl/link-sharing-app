@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '../../../../lib/mongod';
 import bcrypt from 'bcryptjs';
-import { initialSignUpState } from '../../../data/state';
+import { initialSignUpState } from '../../../constantes/constantes';
 
 const saltRounds = 10;
 const dbName = 'link-sharing';

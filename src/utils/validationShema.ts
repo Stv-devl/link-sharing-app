@@ -1,5 +1,6 @@
 'use client';
 
+import { options } from '@/constantes/constantes';
 import * as Yup from 'yup';
 
 export const loginSchema = Yup.object().shape({
@@ -21,4 +22,28 @@ export const signupValidationSchema = Yup.object({
   repeat: Yup.string()
     .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
     .required('Password is required'),
+});
+
+const SettingUrl = options.reduce((acc, { label, url }) => {
+  acc[label.toLowerCase()] = url;
+  return acc;
+}, {} as Record<string, string>);
+
+export const linkValidationSchema = Yup.object().shape({
+  links: Yup.array().of(
+    Yup.object({
+      url: Yup.string()
+        .required('URL is required')
+        .test('matches-example', 'Please write a valid URL', function (value) {
+          const { label } = this.parent;
+          const baseUrl = SettingUrl[label.toLowerCase()];
+          if (!baseUrl) {
+            return false;
+          }
+          const regex = new RegExp(`^${baseUrl}/.{1,}$`);
+          return regex.test(value);
+        }),
+      label: Yup.string().required('Choose a plateform'),
+    })
+  ),
 });

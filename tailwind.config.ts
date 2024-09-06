@@ -15,6 +15,7 @@ module.exports = {
     'bg-link-orange',
     'bg-link-dark-orange',
     'bg-link-green',
+    'no-scrollbar',
   ],
   theme: {
     extend: {
@@ -73,5 +74,27 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (
+        utilities: Record<string, unknown>,
+        variants: string[]
+      ) => void;
+    }) {
+      addUtilities(
+        {
+          '.no-scrollbar': {
+            'scrollbar-width': 'none',
+            '-ms-overflow-style': 'none',
+          },
+          '.no-scrollbar::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+        ['responsive', 'hover']
+      );
+    },
+  ],
 };

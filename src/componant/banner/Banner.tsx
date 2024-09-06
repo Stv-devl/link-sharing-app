@@ -3,19 +3,15 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import useIsAuthenticated from '@/hook/auth/useIsAuthenticated';
-import LogoWrapper from '../iconWrappers/LogoWrapper';
-import NavWrapper from '../iconWrappers/NavWrapper';
-import LogoutWrapper from '../iconWrappers/LogoutWrapper';
+import LogoWrapper from './wrappers/LogoWrapper';
+import NavWrapper from './wrappers/NavWrapper';
+import LogoutWrapper from './wrappers/LogoutWrapper';
 import PreviewBtn from '../button/PreviewBtn';
+import { navItems } from '@/constantes/constantes';
 
 const Banner = () => {
   const { handleLogout } = useIsAuthenticated();
   const pathname = usePathname();
-
-  const navItems = [
-    { type: 'link', path: '/home' },
-    { type: 'profil', path: '/profile' },
-  ];
 
   return (
     <header className="mx-auto my-5 bg-white sm:w-[95%] sm:rounded-lg">

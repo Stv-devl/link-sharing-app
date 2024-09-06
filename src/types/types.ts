@@ -1,4 +1,5 @@
 import { FormEvent } from 'react';
+import { SingleValueProps } from 'react-select';
 
 //.............................//
 //.........data types..........//
@@ -9,27 +10,13 @@ export interface Users {
     email: string;
     password: string;
   };
-  links: {
-    github: LinkDetail;
-    youtube: LinkDetail;
-    linkedIn: LinkDetail;
-    frontend: LinkDetail;
-    twitter: LinkDetail;
-    facebook: LinkDetail;
-    twitch: LinkDetail;
-    devto: LinkDetail;
-    codewars: LinkDetail;
-    codepen: LinkDetail;
-    freecodecamp: LinkDetail;
-    gitlab: LinkDetail;
-    hashnode: LinkDetail;
-  };
+  links: [LinkDetail] | [];
 }
 
-interface LinkDetail {
-  isSelected: boolean;
-  url: string;
+export interface LinkDetail {
+  key: string;
   label: string;
+  url: string;
   color: string;
 }
 
@@ -45,10 +32,21 @@ export interface AuthState {
 
 export interface useRouterDataState {
   user: Users | null;
+  link: LinkDetail[] | null;
   loading: boolean;
   error: string | null;
   fetchData: () => Promise<void>;
   setUser: (user: Users) => void;
+  setLink: (link: LinkDetail[]) => void;
+  addLink: (newLink: LinkDetail) => void;
+  updateLink: (
+    oldKey: string,
+    newKey: string,
+    label: string,
+    url: string,
+    color: string
+  ) => void;
+  removeLink: (linkKey: string) => void;
 }
 
 //.............................//
@@ -71,12 +69,16 @@ export interface FormDataSignUp {
   password: string;
   repeat: string;
 }
-
 export interface UseSignUpReturn {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   formData: FormDataSignUp;
   signupErrors: FormDataSignUp;
+}
+
+export interface LinkError {
+  url?: string;
+  label?: string;
 }
 //.............................//
 //.......component type........//
@@ -89,7 +91,7 @@ export interface InputProps {
   label: string;
   placeholder?: string;
   error?: string;
-  autoComplete: string;
+  autoComplete?: string;
   iconSrc: string;
 }
 
@@ -113,27 +115,98 @@ export interface SettingContainerType {
   type: string;
 }
 
+export interface LinkWrapperProps {
+  label: string;
+  color: string;
+  url: string;
+}
+
 export interface LinkPaginationProps {
-  pages: LinkArray[][];
+  pages: LinkDetail[][];
   pageNumbers: number[];
   currentPage: number;
   setCurrentPage: (newPage: number) => void;
 }
 
-type LinkArray = [string, LinkDetail];
-
 export interface LinkCardProps {
-  displayLinks: LinkArray[];
+  formatedLinks: LinkDetail[];
 }
 
 export interface usePaginationProps {
-  items: LinkArray[];
+  items: LinkDetail[];
   itemsPerPage: number;
 }
 
 export interface UsePaginationReturn {
-  pages: LinkArray[][];
+  pages: LinkDetail[][];
   pageNumbers: number[];
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface CreateLinkProps {
+  link: LinkDetail;
+  number: number;
+  removeLink: (linkKey: string) => void;
+  handleChange: (
+    number: number,
+    key: string,
+    field: string,
+    value: LinkDetail | UrlValue
+  ) => void;
+  linkErrors: Record<number, LinkError>;
+}
+
+export interface DropDownProps {
+  labelText: string;
+  value: string;
+  name: string;
+  handleOption: (selectedOption: LinkDetail) => void;
+  error: string;
+}
+
+//.............................//
+//......useAddLink Hook........//
+//.............................//
+export type LinkErrors = {
+  [index: number]: LinkError;
+};
+
+export interface UrlValue {
+  url: string;
+}
+
+export interface FieldErrors {
+  [index: number]: {
+    [field: string]: string;
+  };
+}
+
+//.............................//
+//....useManageOption Hook.....//
+//.............................//
+
+export interface UseManageOptionsProps {
+  value: string;
+  options: LinkDetail[];
+}
+
+//.............................//
+//.......react-select..........//
+//.............................//
+export interface CustomDefaultOptionProps extends SingleValueProps<LinkDetail> {
+  data: LinkDetail;
+}
+
+export interface OptionTypeProps {
+  label: string;
+  value: string;
+}
+
+export interface OptionsProps {
+  data: {
+    label: string;
+  };
+  innerRef: React.Ref<HTMLDivElement>;
+  innerProps: React.HTMLAttributes<HTMLDivElement>;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import IconPreview from '../iconWrappers/assets/icon-preview-header.svg';
+import IconPreview from '../../assets/icon-preview-header.svg';
 import { PreviewBtnType } from '@/types/types';
 
 const PreviewBtn: React.FC<PreviewBtnType> = ({ href, label }) => {
@@ -21,23 +21,3 @@ const PreviewBtn: React.FC<PreviewBtnType> = ({ href, label }) => {
 };
 
 export default PreviewBtn;
-
-{
-  /*
-<>
-{isPreview ? (
-  <Link href={'./preview'}>
-    <div className="flex items-center justify-center border border-dark-purple text-dark-purple rounded-lg  w-[52px] h-[42px] sm:w-[100px] sm:h-[46px] duration-500 ease-in-out hover:bg-lightest-purple font-semibold  ">
-      <p className="sm:block hidden">{label}</p>
-      <IconPreview className="block sm:hidden" />
-    </div>
-  </Link>
-) : (
-  <Link href={'./home'}>
-    <div className="flex items-center justify-center border border-dark-purple text-dark-purple rounded-lg  w-[52px] h-[42px] sm:w-[100px] sm:h-[46px] duration-500 ease-in-out hover:bg-lightest-purple font-semibold  ">
-      <p>{label}</p>
-    </div>
-  </Link>
-)}
-</>*/
-}

@@ -5,7 +5,7 @@ import useLogin from '../../hook/auth/useLogin';
 import Input from '../../componant/form/input/Input';
 import Link from 'next/link';
 import Button from '@/componant/button/Button';
-import IconLinkLarge from '../../componant/iconWrappers/assets/logo-devlinks-large.svg';
+import IconLinkLarge from '../../assets/logo-devlinks-large.svg';
 
 /**
  * The Login component renders a login form where users can enter their email and password to access their account.
@@ -17,6 +17,7 @@ import IconLinkLarge from '../../componant/iconWrappers/assets/logo-devlinks-lar
 
 const Login = (): JSX.Element => {
   const { handleSubmit, handleChange, formData, loginErrors } = useLogin();
+
   return (
     <section className="flex flex-col bg-white sm:bg-background-white justify-center w-full h-screen">
       <div className=" flex flex-col items-center gap-[51px] w-full px-[8%] sm:px-[0]">
