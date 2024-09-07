@@ -23,8 +23,6 @@ const Input: React.FC<InputProps> = ({
 }: InputProps) => {
   const borderSetting = error ? 'border-error-border' : 'border-input-border';
 
-  console.log(label);
-
   return (
     <>
       <label

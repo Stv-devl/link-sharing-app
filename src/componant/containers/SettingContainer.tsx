@@ -16,10 +16,8 @@ const SettingContainer = () => {
 
   const containerClass =
     link && link.length > 2
-      ? ' no-scrollbar h-[350px] sm:h-[480px] overflow-y-auto '
+      ? ' no-scrollbar h-[350px] sm:h-[550px] overflow-y-auto '
       : 'h-auto';
-
-  console.log(link && link.length > 2);
 
   return (
     <div className="w-full h-full p-7 sm:p-10">

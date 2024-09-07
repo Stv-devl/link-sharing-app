@@ -1,7 +1,14 @@
 import { create } from 'zustand';
-import { useRouterDataState, LinkDetail, Users } from '../types/types';
+import {
+  useRouterDataState,
+  LinkDetail,
+  Users,
+  UpdateLinkResponse,
+  LinkDetailArray,
+} from '../types/types';
 import useAuthStore from './useAuthStore';
 import apiGetUsers from '../service/apiData';
+import apiUpdateLink from '@/service/apiUpdateLink';
 
 interface Link {
   key: string;
@@ -10,7 +17,7 @@ interface Link {
   color: string;
 }
 
-const useUserStore = create<useRouterDataState>((set) => ({
+const useUserStore = create<useRouterDataState>((set, get) => ({
   user: null,
   link: null,
   loading: false,
@@ -69,6 +76,22 @@ const useUserStore = create<useRouterDataState>((set) => ({
     set((state) => ({
       link: state.link ? state.link.filter((link) => link.key !== linkKey) : [],
     })),
+
+  updateLinkBack: async (validateLinks: LinkDetailArray): Promise<void> => {
+    const { user } = get();
+    if (!user) return;
+
+    try {
+      const response: UpdateLinkResponse = await apiUpdateLink(
+        user._id,
+        validateLinks
+      );
+      const linkResponse = response.links ?? [];
+      console.log(linkResponse);
+    } catch (error) {
+      console.error('Error toggling bookmark:', error);
+    }
+  },
 }));
 
 export default useUserStore;

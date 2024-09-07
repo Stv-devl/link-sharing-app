@@ -3,8 +3,6 @@ import useAddLink from '../data/useAddLink';
 import { UseManageOptionsProps } from '@/types/types';
 
 const useManageOptions = ({ value, options }: UseManageOptionsProps) => {
-  console.log(value, options);
-
   const { link } = useAddLink();
 
   const existingLabels = useMemo(

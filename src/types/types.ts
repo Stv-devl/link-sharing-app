@@ -10,7 +10,7 @@ export interface Users {
     email: string;
     password: string;
   };
-  links: [LinkDetail] | [];
+  links: LinkDetail[] | [] | null;
 }
 
 export interface LinkDetail {
@@ -19,6 +19,8 @@ export interface LinkDetail {
   url: string;
   color: string;
 }
+
+export type LinkDetailArray = LinkDetail[];
 
 //.............................//
 //.........store types.........//
@@ -32,12 +34,12 @@ export interface AuthState {
 
 export interface useRouterDataState {
   user: Users | null;
-  link: LinkDetail[] | null;
+  link: LinkDetailArray | null;
   loading: boolean;
   error: string | null;
   fetchData: () => Promise<void>;
   setUser: (user: Users) => void;
-  setLink: (link: LinkDetail[]) => void;
+  setLink: (link: LinkDetailArray) => void;
   addLink: (newLink: LinkDetail) => void;
   updateLink: (
     oldKey: string,
@@ -47,6 +49,7 @@ export interface useRouterDataState {
     color: string
   ) => void;
   removeLink: (linkKey: string) => void;
+  updateLinkBack: (validateLinks: LinkDetailArray) => Promise<void>;
 }
 
 //.............................//
@@ -129,16 +132,16 @@ export interface LinkPaginationProps {
 }
 
 export interface LinkCardProps {
-  formatedLinks: LinkDetail[];
+  formatedLinks: LinkDetailArray;
 }
 
 export interface usePaginationProps {
-  items: LinkDetail[];
+  items: LinkDetailArray;
   itemsPerPage: number;
 }
 
 export interface UsePaginationReturn {
-  pages: LinkDetail[][];
+  pages: LinkDetailArray[];
   pageNumbers: number[];
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -188,7 +191,7 @@ export interface FieldErrors {
 
 export interface UseManageOptionsProps {
   value: string;
-  options: LinkDetail[];
+  options: LinkDetailArray;
 }
 
 //.............................//
@@ -209,4 +212,11 @@ export interface OptionsProps {
   };
   innerRef: React.Ref<HTMLDivElement>;
   innerProps: React.HTMLAttributes<HTMLDivElement>;
+}
+
+//update service
+export interface UpdateLinkResponse {
+  success: boolean;
+  message?: string;
+  links?: LinkDetailArray;
 }

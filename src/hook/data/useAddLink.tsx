@@ -6,7 +6,8 @@ import * as Yup from 'yup';
 import { FieldErrors, LinkDetail, LinkErrors, UrlValue } from '@/types/types';
 
 const useAddLink = () => {
-  const { link, addLink, removeLink, updateLink } = useUserStore();
+  const { link, addLink, removeLink, updateLink, updateLinkBack } =
+    useUserStore();
 
   const [linkErrors, setLinkErrors] = useState<LinkErrors>({});
 
@@ -62,32 +63,38 @@ const useAddLink = () => {
    */
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      await linkValidationSchema.validate(
-        { links: link },
-        { abortEarly: false }
-      );
-      console.log('Links are valid:', link);
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const fieldErrors: FieldErrors = {};
-        error.inner.forEach((err) => {
-          if (err.path) {
-            const match = err.path.match(/links\[(\d+)\]\.(\w+)/);
-            if (match) {
-              const [_, index, field] = match;
-              const indexNumber = parseInt(index, 10);
-              if (!fieldErrors[indexNumber]) {
-                fieldErrors[indexNumber] = {};
+    if (link !== null) {
+      try {
+        await linkValidationSchema.validate(
+          { links: link },
+          { abortEarly: false }
+        );
+        updateLinkBack(link);
+        console.log('Links are valid:', link);
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const fieldErrors: FieldErrors = {};
+          error.inner.forEach((err) => {
+            if (err.path) {
+              const match = err.path.match(/links\[(\d+)\]\.(\w+)/);
+              if (match) {
+                const [_, index, field] = match;
+                const indexNumber = parseInt(index, 10);
+                if (!fieldErrors[indexNumber]) {
+                  fieldErrors[indexNumber] = {};
+                }
+                fieldErrors[indexNumber][field] = err.message;
               }
-              fieldErrors[indexNumber][field] = err.message;
             }
-          }
-        });
-        console.log('Field errors:', fieldErrors);
-        setLinkErrors(fieldErrors);
+          });
+          console.log('Field errors:', fieldErrors);
+          setLinkErrors(fieldErrors);
+        }
+        console.error('Validation error:', error);
       }
-      console.error('Validation error:', error);
+    } else {
+      //ajouter modales : erreur + sauvgarder
+      console.log('Link is null');
     }
   };
 
