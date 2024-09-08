@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Dropdown from '@/componant/form/dropdown/Dropdown';
 import Input from '@/componant/form/input/Input';
 import { formatText } from '@/utils/formatText';
@@ -8,6 +8,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
   link,
   number,
   removeLink,
+  removeLinkBack,
   handleChange,
   linkErrors,
 }) => {
@@ -18,6 +19,17 @@ const CreateLink: React.FC<CreateLinkProps> = ({
     const value: UrlValue = { url: event.target.value };
     handleChange(number, link.key, 'url', value);
   };
+
+  const handleDelete = useCallback(
+    (linkKey: string, isLocal: boolean) => {
+      if (!isLocal) {
+        removeLinkBack(linkKey);
+      } else {
+        removeLink(linkKey);
+      }
+    },
+    [removeLink, removeLinkBack]
+  );
 
   const errorsForCurrentLink = linkErrors[number] || {};
   const urlError = errorsForCurrentLink.url || '';
@@ -32,7 +44,10 @@ const CreateLink: React.FC<CreateLinkProps> = ({
           </div>
           <p>{`Link #${number + 1}`}</p>
         </div>
-        <p className={'cursor-pointer'} onClick={() => removeLink(link.key)}>
+        <p
+          className={'cursor-pointer'}
+          onClick={() => handleDelete(link.key, link.isLocal)}
+        >
           Remove
         </p>
       </div>

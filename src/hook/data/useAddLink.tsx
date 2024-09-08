@@ -6,8 +6,14 @@ import * as Yup from 'yup';
 import { FieldErrors, LinkDetail, LinkErrors, UrlValue } from '@/types/types';
 
 const useAddLink = () => {
-  const { link, addLink, removeLink, updateLink, updateLinkBack } =
-    useUserStore();
+  const {
+    link,
+    addLink,
+    removeLink,
+    removeLinkBack,
+    updateLink,
+    updateLinkBack,
+  } = useUserStore();
 
   const [linkErrors, setLinkErrors] = useState<LinkErrors>({});
 
@@ -17,6 +23,7 @@ const useAddLink = () => {
       label: '',
       url: '',
       color: '',
+      isLocal: true,
     });
   };
 
@@ -39,6 +46,7 @@ const useAddLink = () => {
     ) => {
       updateLinkErrors(index, field);
       const currentLink = link && link.find((link) => link.key === key);
+      const isLocal = true;
       if (!currentLink) return;
       if (field === 'label') {
         updateLink(
@@ -46,12 +54,20 @@ const useAddLink = () => {
           (value as LinkDetail).key,
           (value as LinkDetail).label,
           (value as LinkDetail).url,
-          (value as LinkDetail).color
+          (value as LinkDetail).color,
+          isLocal
         );
       } else if (field === 'url') {
         const urlValue =
           typeof value === 'string' ? value : (value as UrlValue).url;
-        updateLink(key, key, currentLink.label, urlValue, currentLink.color);
+        updateLink(
+          key,
+          key,
+          currentLink.label,
+          urlValue,
+          currentLink.color,
+          isLocal
+        );
       }
     },
     [link, updateLink, updateLinkErrors]
@@ -101,6 +117,7 @@ const useAddLink = () => {
   return {
     link,
     removeLink,
+    removeLinkBack,
     linkErrors,
     handleAddLink,
     handleChange,

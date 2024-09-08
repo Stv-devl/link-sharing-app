@@ -1,14 +1,9 @@
 import { LinkDetail, UpdateLinkResponse } from '@/types/types';
 
-/**.
- * @throws Will throw an error if the request fails.
- */
 const apiUpdateLink = async (
   userId: string,
   links: LinkDetail[]
 ): Promise<UpdateLinkResponse> => {
-  console.log('apiupdate', userId, links);
-
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
       method: 'PUT',

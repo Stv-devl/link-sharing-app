@@ -13,11 +13,20 @@ export interface Users {
   links: LinkDetail[] | [] | null;
 }
 
+export interface Link {
+  key: string;
+  label: string;
+  url: string;
+  color: string;
+  isLocal: boolean;
+}
+
 export interface LinkDetail {
   key: string;
   label: string;
   url: string;
   color: string;
+  isLocal: boolean;
 }
 
 export type LinkDetailArray = LinkDetail[];
@@ -46,9 +55,11 @@ export interface useRouterDataState {
     newKey: string,
     label: string,
     url: string,
-    color: string
+    color: string,
+    isLocal: boolean
   ) => void;
   removeLink: (linkKey: string) => void;
+  removeLinkBack: (linkKey: string) => void;
   updateLinkBack: (validateLinks: LinkDetailArray) => Promise<void>;
 }
 
@@ -151,6 +162,7 @@ export interface CreateLinkProps {
   link: LinkDetail;
   number: number;
   removeLink: (linkKey: string) => void;
+  removeLinkBack: (linkKey: string) => void;
   handleChange: (
     number: number,
     key: string,

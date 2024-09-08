@@ -76,8 +76,6 @@ export async function PUT(request: Request): Promise<NextResponse> {
     }
 
     const updatedLinks = links.map((link: LinkDetail) => {
-      console.log('link', link);
-
       const existingLink = user.links.find(
         (l: LinkDetail) => l.key === link.key
       );
@@ -102,6 +100,47 @@ export async function PUT(request: Request): Promise<NextResponse> {
     );
   } catch (error) {
     console.error('Error processing PUT request:', error);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request): Promise<NextResponse> {
+  try {
+    const { userId, linkKey } = await request.json();
+
+    if (!ObjectId.isValid(userId)) {
+      return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
+    }
+
+    const client = await clientPromise;
+    const db = client.db(dbName);
+    const usersCollection = db.collection(collectionName);
+
+    const objectId = new ObjectId(userId);
+    const user = await usersCollection.findOne({ _id: objectId });
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
+    const updatedLinks = user.links.filter(
+      (link: LinkDetail) => link.key !== linkKey
+    );
+    const updateResult = await usersCollection.updateOne(
+      { _id: objectId },
+      { $set: { links: updatedLinks } }
+    );
+
+    if (updateResult.modifiedCount === 0) {
+      return NextResponse.json({ error: 'No changes made' }, { status: 304 });
+    }
+
+    return NextResponse.json(
+      { message: 'Link deleted successfully' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Error processing DELETE request:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

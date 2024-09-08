@@ -8,6 +8,7 @@ const SettingContainer = () => {
   const {
     link,
     removeLink,
+    removeLinkBack,
     linkErrors,
     handleAddLink,
     handleChange,
@@ -44,6 +45,7 @@ const SettingContainer = () => {
                 link={link}
                 number={index}
                 removeLink={removeLink}
+                removeLinkBack={removeLinkBack}
                 handleChange={handleChange}
                 linkErrors={linkErrors}
               />
