@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import withAuth from '../../../componant/withAuth/WithAuth';
 import MainLayout from '../../../layout/MainLayout';
 import MobileContainer from '@/componant/containers/MobileContainer';
-import SettingContainer from '@/componant/containers/SettingContainer';
+import ProfilContainer from '@/componant/containers/ProfilContainer';
 import Loading from '@/componant/loading/Loading';
 import Error from '@/componant/error/Error';
 import useUserStore from '@/store/useUsersStore';
@@ -26,7 +26,7 @@ const Profil = () => {
           <MobileContainer />
         </div>
         <div className="bg-white w-full lg:w-[60%] h-full rounded-lg">
-          <SettingContainer />
+          <ProfilContainer />
         </div>
       </div>
     </MainLayout>

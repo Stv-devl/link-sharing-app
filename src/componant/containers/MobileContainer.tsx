@@ -15,6 +15,8 @@ const MobileContainer = () => {
   const pathname = usePathname();
   const isProfilPage = pathname === '/profile';
 
+  console.log(isProfilPage);
+
   return (
     <>
       <div className="flex justify-center items-center h-full">
@@ -28,9 +30,9 @@ const MobileContainer = () => {
             priority
           />
           <div
-            className={`${
-              isProfilPage ? 'bg-white z-2' : ''
-            } ${containerClass} absolute left-8 top-[278px] w-60 h-1/2`}
+            className={` ${containerClass} absolute left-8 top-[278px] w-60 h-1/2 ${
+              isProfilPage ? 'bg-white h-[305px] z-2' : ''
+            } `}
           >
             <LinkCard />
           </div>
