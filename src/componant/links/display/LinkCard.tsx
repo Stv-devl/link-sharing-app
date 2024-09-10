@@ -1,22 +1,36 @@
 import React from 'react';
+import { DndContext } from '@dnd-kit/core';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import LinkWrapper from './LinkWrapper';
-import { LinkCardProps } from '@/types/types';
 
-const LinkCard: React.FC<LinkCardProps> = ({ formatedLinks }) => {
+import useDragAndDrop from '@/hook/data/useDragAndDrop';
+
+const LinkCard = () => {
+  const { link, sensors, handleDragEnd } = useDragAndDrop();
+
   return (
-    <>
-      <div className="flex flex-col gap-5 w-full ">
-        {formatedLinks &&
-          formatedLinks.map((link, index) => (
-            <LinkWrapper
-              key={`${link.key}-${index}`}
-              label={link.label}
-              color={link.color}
-              url={link.url}
-            />
-          ))}
-      </div>
-    </>
+    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+      <SortableContext
+        items={link ? link.map((item) => item.key) : []}
+        strategy={verticalListSortingStrategy}
+      >
+        <div className="flex flex-col gap-5 w-full sortable-list ">
+          {link &&
+            link.map((link) => (
+              <LinkWrapper
+                key={link.key}
+                id={link.key}
+                label={link.label}
+                color={link.color}
+                url={link.url}
+              />
+            ))}
+        </div>
+      </SortableContext>
+    </DndContext>
   );
 };
 

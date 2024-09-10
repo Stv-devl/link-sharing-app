@@ -11,7 +11,7 @@ const useAddLink = () => {
     addLink,
     removeLink,
     removeLinkBack,
-    updateLink,
+    updateLinkLocal,
     updateLinkBack,
   } = useUserStore();
 
@@ -49,28 +49,29 @@ const useAddLink = () => {
       const isLocal = true;
       if (!currentLink) return;
       if (field === 'label') {
-        updateLink(
-          key,
-          (value as LinkDetail).key,
-          (value as LinkDetail).label,
-          (value as LinkDetail).url,
-          (value as LinkDetail).color,
-          isLocal
-        );
+        const updatedLinks = {
+          key: (value as LinkDetail).key,
+          label: (value as LinkDetail).label,
+          url: (value as LinkDetail).url,
+          color: (value as LinkDetail).color,
+          isLocal: isLocal,
+        };
+        updateLinkLocal(key, updatedLinks);
       } else if (field === 'url') {
         const urlValue =
           typeof value === 'string' ? value : (value as UrlValue).url;
-        updateLink(
-          key,
-          key,
-          currentLink.label,
-          urlValue,
-          currentLink.color,
-          isLocal
-        );
+
+        const updatedLinks = {
+          key: key,
+          label: currentLink.label,
+          url: urlValue,
+          color: currentLink.color,
+          isLocal: isLocal,
+        };
+        updateLinkLocal(key, updatedLinks);
       }
     },
-    [link, updateLink, updateLinkErrors]
+    [link, updateLinkLocal, updateLinkErrors]
   );
 
   /**

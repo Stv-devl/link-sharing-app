@@ -50,13 +50,9 @@ export interface useRouterDataState {
   setUser: (user: Users) => void;
   setLink: (link: LinkDetailArray) => void;
   addLink: (newLink: LinkDetail) => void;
-  updateLink: (
-    oldKey: string,
-    newKey: string,
-    label: string,
-    url: string,
-    color: string,
-    isLocal: boolean
+  updateLinkLocal: (
+    oldKey: string | null,
+    newItems: LinkDetail[] | LinkDetail
   ) => void;
   removeLink: (linkKey: string) => void;
   removeLinkBack: (linkKey: string) => void;
@@ -94,8 +90,9 @@ export interface LinkError {
   url?: string;
   label?: string;
 }
+
 //.............................//
-//.......component type........//
+//.....Components props........//
 //.............................//
 export interface InputProps {
   name: string;
@@ -130,6 +127,7 @@ export interface SettingContainerType {
 }
 
 export interface LinkWrapperProps {
+  id: string;
   label: string;
   color: string;
   url: string;
@@ -140,22 +138,6 @@ export interface LinkPaginationProps {
   pageNumbers: number[];
   currentPage: number;
   setCurrentPage: (newPage: number) => void;
-}
-
-export interface LinkCardProps {
-  formatedLinks: LinkDetailArray;
-}
-
-export interface usePaginationProps {
-  items: LinkDetailArray;
-  itemsPerPage: number;
-}
-
-export interface UsePaginationReturn {
-  pages: LinkDetailArray[];
-  pageNumbers: number[];
-  currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface CreateLinkProps {
@@ -205,6 +187,9 @@ export interface UseManageOptionsProps {
   value: string;
   options: LinkDetailArray;
 }
+//.............................//
+//....useDragAndDrop Hook......//
+//.............................//
 
 //.............................//
 //.......react-select..........//

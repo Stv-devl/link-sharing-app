@@ -45,22 +45,21 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       link: state.link ? [...state.link, newLink] : [newLink],
     })),
 
-  updateLink: (
-    oldKey: string,
-    newKey: string,
-    label: string,
-    url: string,
-    color: string,
-    isLocal: boolean
+  updateLinkLocal: (
+    oldKey: string | null,
+    updatedLink: LinkDetail | LinkDetail[]
   ) =>
     set((state) => {
-      if (!state.link) return state;
-      const updatedLinks = state.link.map((link) => {
-        if (link.key === oldKey) {
-          return { key: newKey, label, url, color, isLocal };
-        }
-        return link;
-      });
+      if (!state.link || !Array.isArray(state.link)) return state;
+
+      const updatedLinks = oldKey
+        ? state.link.map((link) =>
+            link.key === oldKey ? { ...link, ...updatedLink } : link
+          )
+        : Array.isArray(updatedLink)
+        ? updatedLink
+        : [updatedLink];
+
       return {
         ...state,
         link: updatedLinks,
