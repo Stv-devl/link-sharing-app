@@ -1,11 +1,20 @@
-import useUserStore from '@/store/useUsersStore';
 import React from 'react';
 import ProfilePictureWrapper from '../profil/ProfilePictureWrapper';
 import ProfileDetailsWrapper from '../profil/ProfileDetailsWrapper';
 import Button from '../button/Button';
+import useUpdateProfile from '@/hook/data/useUpdateProfile';
 
 const ProfilContainer = () => {
-  const { user } = useUserStore();
+  const {
+    profile,
+    profilErrors,
+    setProfilErrors,
+    updateLinkErrors,
+    handleChange,
+    handleSubmit,
+  } = useUpdateProfile();
+
+  console.log(profile);
 
   return (
     <div className="w-full h-full p-7 sm:p-10">
@@ -19,7 +28,7 @@ const ProfilContainer = () => {
         <ProfilePictureWrapper />
       </div>
       <div className="mb-6">
-        <ProfileDetailsWrapper />
+        <ProfileDetailsWrapper profile={profile} handleChange={handleChange} />
       </div>
       <div className="flex justify-end w-full border-t ">
         <div className="w-full sm:w-[91px] mt-6">

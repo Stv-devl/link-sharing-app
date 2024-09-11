@@ -1,7 +1,11 @@
 import React from 'react';
 import Input from '../form/input/Input';
+import { ProfileDetailsWrapperProps } from '@/types/types';
 
-const ProfileDetailsWrapper = () => {
+const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
+  profile,
+  handleChange,
+}) => {
   return (
     <div className="flex flex-col gap-3 bg-background-white p-5 rounded-lg">
       <div className="flex flex-col sm:flex-row gap-1 sm:gap-10">
@@ -10,8 +14,8 @@ const ProfileDetailsWrapper = () => {
           label="First name*"
           placeholder="e.g. John"
           type="text"
-          handleChange={() => {}}
-          value=""
+          handleChange={handleChange}
+          value={profile?.firstname ?? ''}
           error=""
           autoComplete="firstname"
           iconSrc=""
@@ -23,8 +27,8 @@ const ProfileDetailsWrapper = () => {
           label="Last name*"
           placeholder="e.g. Appleseed"
           type="text"
-          handleChange={() => {}}
-          value=""
+          handleChange={handleChange}
+          value={profile?.lastname ?? ''}
           error=""
           autoComplete="lastname"
           iconSrc=""
@@ -36,8 +40,8 @@ const ProfileDetailsWrapper = () => {
           label="Email"
           placeholder="e.g. alex@email.com"
           type="text"
-          handleChange={() => {}}
-          value=""
+          handleChange={handleChange}
+          value={profile?.email ?? ''}
           error=""
           autoComplete="email"
           iconSrc=""

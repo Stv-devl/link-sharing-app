@@ -11,6 +11,7 @@ export interface Users {
     password: string;
   };
   links: LinkDetail[] | [] | null;
+  profile: ProfilDetail | null;
 }
 
 export interface Link {
@@ -29,6 +30,13 @@ export interface LinkDetail {
   isLocal: boolean;
 }
 
+export interface ProfilDetail {
+  image?: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+}
+
 export type LinkDetailArray = LinkDetail[];
 
 //.............................//
@@ -44,6 +52,7 @@ export interface AuthState {
 export interface useRouterDataState {
   user: Users | null;
   link: LinkDetailArray | null;
+  profile: ProfilDetail | null;
   loading: boolean;
   error: string | null;
   fetchData: () => Promise<void>;
@@ -54,6 +63,7 @@ export interface useRouterDataState {
     oldKey: string | null,
     newItems: LinkDetail[] | LinkDetail
   ) => void;
+  updateProfileLocal: (value: Partial<ProfilDetail>) => void;
   removeLink: (linkKey: string) => void;
   removeLinkBack: (linkKey: string) => void;
   updateLinkBack: (validateLinks: LinkDetailArray) => Promise<void>;
@@ -162,6 +172,14 @@ export interface DropDownProps {
   error: string;
 }
 
+export interface ProfileDetailsWrapperProps {
+  profile: ProfilDetail | null;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface DisplayProfileProps {
+  profile: ProfilDetail | null;
+}
 //.............................//
 //......useAddLink Hook........//
 //.............................//

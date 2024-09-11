@@ -5,8 +5,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import LinkWrapper from './LinkWrapper';
-
-import useDragAndDrop from '@/hook/data/useDragAndDrop';
+import useDragAndDrop from '@/hook/manage/useDragAndDrop';
 
 const LinkCard = () => {
   const { link, sensors, handleDragEnd } = useDragAndDrop();

@@ -11,6 +11,7 @@ import Iconfreecodecamp from '../assets/icon-freecodecamp.svg';
 import Icongitlab from '../assets/icon-gitlab.svg';
 import Iconhashnode from '../assets/icon-hashnode.svg';
 import Iconfacebook from '../assets/icon-facebook.svg';
+import IconUploadImage from '../assets/icon-upload-image.svg';
 
 export const initialSignUpState = {
   credentials: {
@@ -22,6 +23,7 @@ export const initialSignUpState = {
     image: '',
     firstname: '',
     lastname: '',
+    email: '',
   },
 };
 
@@ -89,4 +91,5 @@ export const icones: IconComponents = {
   Icongitlab,
   Iconhashnode,
   Iconfacebook,
+  IconUploadImage,
 };

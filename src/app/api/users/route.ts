@@ -39,11 +39,17 @@ export async function POST(request: Request): Promise<NextResponse> {
     const db = client.db(dbName);
     const usersCollection = db.collection(collectionName);
     const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
+
     const userDocument = {
       ...initialSignUpState,
       credentials: {
         email: newUser.email,
         password: hashedPassword,
+      },
+      profile: {
+        ...initialSignUpState.profile,
+        ...newUser.profile,
+        email: newUser.email,
       },
     };
     const result = await usersCollection.insertOne(userDocument);

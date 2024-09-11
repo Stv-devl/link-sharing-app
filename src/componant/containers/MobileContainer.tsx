@@ -3,9 +3,10 @@ import Image from 'next/image';
 import LinkCard from '../links/display/LinkCard';
 import { usePathname } from 'next/navigation';
 import useUserStore from '@/store/useUsersStore';
+import DisplayProfile from '../profil/DisplayProfile';
 
 const MobileContainer = () => {
-  const { link } = useUserStore();
+  const { link, profile } = useUserStore();
 
   const containerClass =
     link && link.length > 5
@@ -14,8 +15,6 @@ const MobileContainer = () => {
 
   const pathname = usePathname();
   const isProfilPage = pathname === '/profile';
-
-  console.log(isProfilPage);
 
   return (
     <>
@@ -29,6 +28,7 @@ const MobileContainer = () => {
             className="z-1"
             priority
           />
+          <DisplayProfile profile={profile} />
           <div
             className={` ${containerClass} absolute left-8 top-[278px] w-60 h-1/2 ${
               isProfilPage ? 'bg-white h-[305px] z-2' : ''
