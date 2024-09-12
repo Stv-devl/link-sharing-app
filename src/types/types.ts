@@ -63,10 +63,11 @@ export interface useRouterDataState {
     oldKey: string | null,
     newItems: LinkDetail[] | LinkDetail
   ) => void;
+  updateLinkBack: (validateLinks: LinkDetailArray) => Promise<void>;
   updateProfileLocal: (value: Partial<ProfilDetail>) => void;
+  updateProfileBack: (updatedProfile: ProfilDetail) => Promise<void>;
   removeLink: (linkKey: string) => void;
   removeLinkBack: (linkKey: string) => void;
-  updateLinkBack: (validateLinks: LinkDetailArray) => Promise<void>;
 }
 
 //.............................//
@@ -99,6 +100,12 @@ export interface UseSignUpReturn {
 export interface LinkError {
   url?: string;
   label?: string;
+}
+
+export interface ProfileErrors {
+  firstname: string;
+  lastname: string;
+  email: string;
 }
 
 //.............................//
@@ -175,11 +182,17 @@ export interface DropDownProps {
 export interface ProfileDetailsWrapperProps {
   profile: ProfilDetail | null;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  profilErrors: Record<string, string>;
 }
 
 export interface DisplayProfileProps {
   profile: ProfilDetail | null;
 }
+
+//.............................//
+//....useUpdateProfile Hook....//
+//.............................//
+
 //.............................//
 //......useAddLink Hook........//
 //.............................//
@@ -234,4 +247,10 @@ export interface UpdateLinkResponse {
   success: boolean;
   message?: string;
   links?: LinkDetailArray;
+}
+
+export interface UpdateProfileResponse {
+  success: boolean;
+  message?: string;
+  profile?: ProfilDetail;
 }

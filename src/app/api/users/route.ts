@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '../../../../lib/mongod';
-import { ObjectId } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
 import { initialSignUpState } from '../../../constantes/constantes';
-import { LinkDetail } from '@/types/types';
+import { LinkDetail, LinkDetailArray, ProfilDetail } from '@/types/types';
 
 const saltRounds = 10;
 const dbName = 'link-sharing';
@@ -69,31 +69,29 @@ export async function PUT(request: Request): Promise<NextResponse> {
     const db = client.db(dbName);
     const usersCollection = db.collection(collectionName);
 
-    const { userId, links } = await request.json();
+    const { userId, updatedProfile } = await request.json();
 
     if (!ObjectId.isValid(userId)) {
       return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
     }
-    const objectId = new ObjectId(userId);
-    const user = await usersCollection.findOne({ _id: objectId });
 
+    const objectId = new ObjectId(userId);
+
+    const user = await usersCollection.findOne({ _id: objectId });
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    const updatedLinks = links.map((link: LinkDetail) => {
-      const existingLink = user.links.find(
-        (l: LinkDetail) => l.key === link.key
-      );
-      if (existingLink) {
-        return { ...existingLink, ...link };
-      } else {
-        return link;
-      }
-    });
+    const updatedData = {
+      'profile.firstname': updatedProfile.firstname,
+      'profile.lastname': updatedProfile.lastname,
+      'profile.email': updatedProfile.email,
+      ...(updatedProfile.image && { 'profile.image': updatedProfile.image }),
+    };
+
     const updateResult = await usersCollection.updateOne(
       { _id: objectId },
-      { $set: { links: updatedLinks } }
+      { $set: updatedData }
     );
 
     if (updateResult.modifiedCount === 0) {
@@ -101,7 +99,7 @@ export async function PUT(request: Request): Promise<NextResponse> {
     }
 
     return NextResponse.json(
-      { message: 'Links updated successfully' },
+      { message: 'Profile updated successfully' },
       { status: 200 }
     );
   } catch (error) {

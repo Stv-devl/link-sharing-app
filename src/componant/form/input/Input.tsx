@@ -36,9 +36,9 @@ const Input: React.FC<InputProps> = ({
     <>
       <label
         htmlFor={name}
-        className={`text-xs ${
+        className={` ${
           error && label !== 'Link' ? 'text-medium-red' : 'text-dark-gray'
-        } ${!haveIcon ? 'w-[100px]' : ''}`}
+        } ${!haveIcon ? 'w-[120px] text-base text-medium-gray ' : 'text-xs'}`}
       >
         {label}
       </label>

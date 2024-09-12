@@ -8,13 +8,10 @@ const ProfilContainer = () => {
   const {
     profile,
     profilErrors,
-    setProfilErrors,
     updateLinkErrors,
     handleChange,
     handleSubmit,
   } = useUpdateProfile();
-
-  console.log(profile);
 
   return (
     <div className="w-full h-full p-7 sm:p-10">
@@ -24,17 +21,23 @@ const ProfilContainer = () => {
       <p className="mb-10">
         Add your details to create a personal touch to your profile.
       </p>
-      <div className="mb-6">
-        <ProfilePictureWrapper />
-      </div>
-      <div className="mb-6">
-        <ProfileDetailsWrapper profile={profile} handleChange={handleChange} />
-      </div>
-      <div className="flex justify-end w-full border-t ">
-        <div className="w-full sm:w-[91px] mt-6">
-          <Button label={'Save'} />
+      <form action="submit" onSubmit={handleSubmit}>
+        <div className="mb-6">
+          <ProfilePictureWrapper />
         </div>
-      </div>
+        <div className="mb-6">
+          <ProfileDetailsWrapper
+            profile={profile}
+            handleChange={handleChange}
+            profilErrors={profilErrors}
+          />
+        </div>
+        <div className="flex justify-end w-full border-t ">
+          <div className="w-full sm:w-[91px] mt-6">
+            <Button label={'Save'} />
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

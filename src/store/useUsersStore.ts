@@ -7,11 +7,13 @@ import {
   UpdateLinkResponse,
   LinkDetailArray,
   ProfilDetail,
+  UpdateProfileResponse,
 } from '../types/types';
 import useAuthStore from './useAuthStore';
 import apiGetUsers from '../service/apiData';
 import apiUpdateLink from '@/service/apiUpdateLink';
 import apiDelete from '@/service/apiDelete';
+import apiUpdateProfile from '@/service/apiUpdateProfile';
 
 const useUserStore = create<useRouterDataState>((set, get) => ({
   user: null,
@@ -63,7 +65,22 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     });
   },
 
-  updateProfileBack: () => {},
+  updateProfileBack: async (updatedProfile: ProfilDetail) => {
+    const { user } = get();
+    if (!user) return;
+
+    console.log('updated profile backend', updatedProfile);
+    try {
+      const response: UpdateProfileResponse = await apiUpdateProfile(
+        user._id,
+        updatedProfile
+      );
+      const profileResponse = response.profile ?? {};
+      console.log(profileResponse);
+    } catch (error) {
+      console.error('Error updating the profile:', error);
+    }
+  },
 
   addLink: (newLink: Link) =>
     set((state) => ({
@@ -99,7 +116,7 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       ...link,
       isLocal: false,
     }));
-    console.log('updated linkback', updatedLinks);
+    console.log('updated link backend', updatedLinks);
 
     try {
       const response: UpdateLinkResponse = await apiUpdateLink(
@@ -109,7 +126,7 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       const linkResponse = response.links ?? [];
       console.log(linkResponse);
     } catch (error) {
-      console.error('Error toggling bookmark:', error);
+      console.error('Error updating the links:', error);
     }
   },
 

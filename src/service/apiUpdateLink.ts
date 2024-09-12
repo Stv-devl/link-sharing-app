@@ -5,7 +5,7 @@ const apiUpdateLink = async (
   links: LinkDetail[]
 ): Promise<UpdateLinkResponse> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/links`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

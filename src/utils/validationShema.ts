@@ -47,3 +47,13 @@ export const linkValidationSchema = Yup.object().shape({
     })
   ),
 });
+
+export const profileValidationSchema = Yup.object({
+  firstname: Yup.string()
+    .min(2, '2 characters minimum')
+    .required("Can't be empty"),
+  lastname: Yup.string()
+    .min(2, '2 characters minimum')
+    .required("Can't be empty"),
+  email: Yup.string().email('Invalid email address').required('Cant be empty'),
+});
