@@ -13,3 +13,18 @@
 body {
   font-family: 'Instrument Sans', sans-serif;
 }
+
+.scrollbar-offset {
+  position: relative;
+  padding-right: 10px;
+}
+
+.scrollbar-offset::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  background-color: transparent;
+}

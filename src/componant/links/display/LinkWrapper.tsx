@@ -5,8 +5,12 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { LinkWrapperProps } from '@/types/types';
 import { formatText } from '@/utils/formatText';
+import { usePathname } from 'next/navigation';
 
 const LinkWrapper: React.FC<LinkWrapperProps> = ({ id, label, color, url }) => {
+  const pathname = usePathname();
+  const isPreviewPage = pathname === '/preview';
+
   const { attributes, listeners, setNodeRef, transform } = useSortable({ id });
 
   const isFrontend = label === 'Frontend Mentor';
@@ -29,7 +33,9 @@ const LinkWrapper: React.FC<LinkWrapperProps> = ({ id, label, color, url }) => {
       }}
       className={`flex justify-between items-center bg-${color} sortable-item ${
         isFrontend ? 'border' : ''
-      } rounded-lg px-4 cursor-pointer w-full h-11`}
+      } rounded-lg px-4 cursor-pointer w-full ${
+        !isPreviewPage ? 'h-11' : 'h-14'
+      }`}
       onClick={handleClick}
     >
       <div className="flex items-center gap-2">

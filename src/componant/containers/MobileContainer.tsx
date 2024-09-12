@@ -3,7 +3,7 @@ import Image from 'next/image';
 import LinkCard from '../links/display/LinkCard';
 import { usePathname } from 'next/navigation';
 import useUserStore from '@/store/useUsersStore';
-import DisplayProfile from '../profil/DisplayProfile';
+import DisplayProfile from '../profil/DisplayPreviewProfile';
 
 const MobileContainer = () => {
   const { link, profile } = useUserStore();
@@ -28,7 +28,9 @@ const MobileContainer = () => {
             className="z-1"
             priority
           />
-          <DisplayProfile profile={profile} />
+          <div className={`absolute top-10 left-[55px] w-[200px] h-[200px] `}>
+            <DisplayProfile profile={profile} />
+          </div>
           <div
             className={` ${containerClass} absolute left-8 top-[278px] w-60 h-1/2 ${
               isProfilPage ? 'bg-white h-[305px] z-2' : ''
@@ -36,6 +38,11 @@ const MobileContainer = () => {
           >
             <LinkCard />
           </div>
+          {link && link.length > 5 && (
+            <span className="absolute bottom-6 left-[80px] text-sm">
+              Scroll up and down
+            </span>
+          )}
         </div>
       </div>
     </>

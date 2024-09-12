@@ -17,7 +17,7 @@ const SettingContainer = () => {
 
   const containerClass =
     link && link.length > 2
-      ? ' no-scrollbar h-[350px] sm:h-[550px] overflow-y-auto '
+      ? ' h-[350px] sm:h-[550px] overflow-y-auto '
       : 'h-auto';
 
   return (

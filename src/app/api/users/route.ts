@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '../../../../lib/mongod';
-import { Collection, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
 import { initialSignUpState } from '../../../constantes/constantes';
-import { LinkDetail, LinkDetailArray, ProfilDetail } from '@/types/types';
+import { LinkDetail } from '@/types/types';
 
 const saltRounds = 10;
 const dbName = 'link-sharing';

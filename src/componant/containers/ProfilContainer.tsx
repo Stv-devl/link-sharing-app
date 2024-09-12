@@ -5,13 +5,8 @@ import Button from '../button/Button';
 import useUpdateProfile from '@/hook/data/useUpdateProfile';
 
 const ProfilContainer = () => {
-  const {
-    profile,
-    profilErrors,
-    updateLinkErrors,
-    handleChange,
-    handleSubmit,
-  } = useUpdateProfile();
+  const { profile, profilErrors, handleChange, handleSubmit } =
+    useUpdateProfile();
 
   return (
     <div className="w-full h-full p-7 sm:p-10">
