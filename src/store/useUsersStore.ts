@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import {
   useRouterDataState,
   LinkDetail,
-  Link,
   Users,
   UpdateLinkResponse,
   LinkDetailArray,
@@ -86,7 +85,7 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     }
   },
 
-  addLink: (newLink: Link) =>
+  addLink: (newLink: LinkDetail) =>
     set((state) => ({
       link: state.link ? [...state.link, newLink] : [newLink],
     })),
