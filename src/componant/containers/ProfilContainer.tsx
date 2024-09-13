@@ -5,7 +5,7 @@ import Button from '../button/Button';
 import useUpdateProfile from '@/hook/data/useUpdateProfile';
 
 const ProfilContainer = () => {
-  const { profile, profilErrors, handleChange, handleSubmit } =
+  const { profile, profilErrors, setFile, handleChange, handleSubmit } =
     useUpdateProfile();
 
   return (
@@ -18,7 +18,7 @@ const ProfilContainer = () => {
       </p>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <ProfilePictureWrapper />
+          <ProfilePictureWrapper setFile={setFile} />
         </div>
         <div className="mb-6 sm:mb-[100px]">
           <ProfileDetailsWrapper

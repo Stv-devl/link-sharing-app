@@ -2,11 +2,14 @@ import React, { useRef, useCallback } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import Image from 'next/image';
 import IconUploadImage from '../../assets/icon-upload-image.svg';
+import { ProfilePictureWrapperProps } from '@/types/types';
 
 const MAX_IMAGE_DIMENSION = 1024;
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/png'];
 
-const ProfilePictureWrapper = () => {
+const ProfilePictureWrapper: React.FC<ProfilePictureWrapperProps> = ({
+  setFile,
+}) => {
   const profile = useUserStore((state) => state.profile);
   const updateProfileLocal = useUserStore((state) => state.updateProfileLocal);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -26,26 +29,6 @@ const ProfilePictureWrapper = () => {
     return true;
   };
 
-  const loadImage = (file: File, callback: (imageUrl: string) => void) => {
-    const img = new window.Image();
-    img.onload = () => {
-      if (
-        img.width <= MAX_IMAGE_DIMENSION &&
-        img.height <= MAX_IMAGE_DIMENSION
-      ) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          callback(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Image dimensions should be less than 1024x1024 pixels.');
-      }
-      URL.revokeObjectURL(img.src);
-    };
-    img.src = URL.createObjectURL(file);
-  };
-
   const handleImageClick = useCallback(() => {
     fileInputRef.current?.click();
   }, []);
@@ -54,12 +37,25 @@ const ProfilePictureWrapper = () => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       if (file && validateFile(file)) {
-        loadImage(file, (imageUrl) => {
-          updateProfileLocal({ image: imageUrl });
-        });
+        const img = new window.Image();
+        img.onload = () => {
+          if (
+            img.width <= MAX_IMAGE_DIMENSION &&
+            img.height <= MAX_IMAGE_DIMENSION
+          ) {
+            setFile(file);
+            updateProfileLocal({ image: URL.createObjectURL(file) });
+          } else {
+            alert(
+              `Image dimensions should be less than ${MAX_IMAGE_DIMENSION}x${MAX_IMAGE_DIMENSION}px.`
+            );
+          }
+          URL.revokeObjectURL(img.src);
+        };
+        img.src = URL.createObjectURL(file);
       }
     },
-    [updateProfileLocal]
+    [setFile, updateProfileLocal]
   );
 
   return (
@@ -77,11 +73,12 @@ const ProfilePictureWrapper = () => {
             />
             {havePicture && (
               <Image
-                src={profile.image || ''}
+                src={typeof profile.image === 'string' ? profile.image : ''}
                 alt="Profile"
                 width={193}
                 height={193}
                 className="absolute z-0 h-[193px] w-[193px] object-cover"
+                priority
               />
             )}
             <p

@@ -31,7 +31,7 @@ export interface LinkDetail {
 }
 
 export interface ProfilDetail {
-  image?: string;
+  image?: File | string | null;
   firstname?: string;
   lastname?: string;
   email?: string;
@@ -189,9 +189,9 @@ export interface DisplayProfileProps {
   profile: ProfilDetail | null;
 }
 
-//.............................//
-//....useUpdateProfile Hook....//
-//.............................//
+export interface ProfilePictureWrapperProps {
+  setFile: (file: File) => void;
+}
 
 //.............................//
 //......useAddLink Hook........//

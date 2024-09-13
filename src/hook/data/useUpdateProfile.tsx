@@ -7,6 +7,8 @@ import { ProfileErrors } from '@/types/types';
 const useUpdateProfile = () => {
   const { profile, updateProfileLocal, updateProfileBack } = useUserStore();
 
+  const [file, setFile] = useState<File | null>(null);
+
   const [profilErrors, setProfilErrors] = useState({
     firstname: '',
     lastname: '',
@@ -27,7 +29,11 @@ const useUpdateProfile = () => {
     if (profile !== null) {
       try {
         await profileValidationSchema.validate(profile, { abortEarly: false });
-        updateProfileBack(profile);
+        const updatedProfile = { ...profile, image: file };
+
+        console.log(updatedProfile);
+
+        updateProfileBack(updatedProfile);
         console.log('Profile is valid', profile);
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
@@ -53,6 +59,7 @@ const useUpdateProfile = () => {
     profile,
     profilErrors,
     setProfilErrors,
+    setFile,
     handleChange,
     handleSubmit,
   };

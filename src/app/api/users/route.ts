@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '../../../../lib/mongod';
 import { ObjectId } from 'mongodb';
+import { v2 as cloudinary } from 'cloudinary';
 import bcrypt from 'bcryptjs';
 import { initialSignUpState } from '../../../constantes/constantes';
 import { LinkDetail } from '@/types/types';
@@ -8,6 +9,23 @@ import { LinkDetail } from '@/types/types';
 const saltRounds = 10;
 const dbName = 'link-sharing';
 const collectionName = 'users';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+async function uploadImageToCloudinary(file: File) {
+  const buffer = await file.arrayBuffer();
+  const base64String = Buffer.from(buffer).toString('base64');
+  const dataUrl = `data:${file.type};base64,${base64String}`;
+
+  return cloudinary.uploader.upload(dataUrl, {
+    folder: 'user_profil',
+    public_id: `${Date.now()}`,
+  });
+}
 
 /**
  * Handles GET requests to retrieve the list of users.
@@ -69,9 +87,14 @@ export async function PUT(request: Request): Promise<NextResponse> {
     const db = client.db(dbName);
     const usersCollection = db.collection(collectionName);
 
-    const { userId, updatedProfile } = await request.json();
+    const formData = await request.formData();
+    const userId = formData.get('userId')?.toString();
+    const firstname = formData.get('firstname')?.toString();
+    const lastname = formData.get('lastname')?.toString();
+    const email = formData.get('email')?.toString();
+    const image = formData.get('image') as File | null;
 
-    if (!ObjectId.isValid(userId)) {
+    if (!userId || !ObjectId.isValid(userId)) {
       return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
     }
 
@@ -82,11 +105,17 @@ export async function PUT(request: Request): Promise<NextResponse> {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
+    let imageUrl = user.profile.image;
+    if (image && image instanceof File) {
+      const uploadResult = await uploadImageToCloudinary(image);
+      imageUrl = uploadResult.secure_url;
+    }
+
     const updatedData = {
-      'profile.firstname': updatedProfile.firstname,
-      'profile.lastname': updatedProfile.lastname,
-      'profile.email': updatedProfile.email,
-      ...(updatedProfile.image && { 'profile.image': updatedProfile.image }),
+      'profile.firstname': firstname,
+      'profile.lastname': lastname,
+      'profile.email': email,
+      ...(imageUrl && { 'profile.image': imageUrl }),
     };
 
     const updateResult = await usersCollection.updateOne(
@@ -107,7 +136,6 @@ export async function PUT(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
-
 export async function DELETE(request: Request): Promise<NextResponse> {
   try {
     const { userId, linkKey } = await request.json();
