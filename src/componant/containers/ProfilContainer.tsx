@@ -16,7 +16,7 @@ const ProfilContainer = () => {
       <p className="mb-10">
         Add your details to create a personal touch to your profile.
       </p>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-6">
           <ProfilePictureWrapper />
         </div>

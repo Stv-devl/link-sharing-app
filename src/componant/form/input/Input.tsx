@@ -2,6 +2,7 @@
 import React from 'react';
 import { InputProps } from '../../../types/types';
 import Image from 'next/image';
+import { log } from 'console';
 
 /**
  * Renders an input field with dynamic styling based on validation state.

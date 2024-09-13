@@ -27,7 +27,7 @@ export interface LinkDetail {
   label: string;
   url: string;
   color: string;
-  isLocal: boolean;
+  isLocal?: boolean;
 }
 
 export interface ProfilDetail {

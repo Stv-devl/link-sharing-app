@@ -18,7 +18,7 @@ const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
           handleChange={handleChange}
           value={profile?.firstname ?? ''}
           error={profilErrors.firstname}
-          autoComplete="firstname"
+          autoComplete="given-name"
           iconSrc=""
         />
       </div>
@@ -31,7 +31,7 @@ const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
           handleChange={handleChange}
           value={profile?.lastname ?? ''}
           error={profilErrors.lastname}
-          autoComplete="lastname"
+          autoComplete="family-name"
           iconSrc=""
         />
       </div>

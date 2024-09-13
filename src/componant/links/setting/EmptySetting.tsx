@@ -3,7 +3,7 @@ import React from 'react';
 
 const EmptySetting = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 w-full h-full bg-background-white rounded-lg">
+    <div className="flex flex-col items-center justify-center gap-8 w-full h-full bg-background-white rounded-lg p-7 sm:p-0">
       <Image
         src={'/images/illustration-empty.svg'}
         alt={`empty setting icon`}

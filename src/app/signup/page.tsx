@@ -19,7 +19,6 @@ import IconLinkLarge from '../../assets/logo-devlinks-large.svg';
 const SignUp = (): JSX.Element => {
   const { handleSubmit, handleChange, formData, signupErrors } = useSignUp();
 
-  //ajouter vérification si email déjà dans base de donnée
   return (
     <section className="flex flex-col bg-white  sm:bg-background-white justify-center w-full h-full">
       <div className=" flex flex-col items-center gap-[51px] w-full px-[5%] sm:px-[0]">

@@ -62,12 +62,6 @@ const Login = (): JSX.Element => {
                   autoComplete={'current-password'}
                   iconSrc={'/images/icon-password.svg'}
                 />
-                {/*ajouter ce message quand donnnées pas dans data base*/}
-                {/* 
-              <span className=" text-medium-red">
-                {loginErrors &&
-                  `We don't find your information in our database`}
-              </span>*/}
               </div>
             </div>
             <Button label={'Login'} />
