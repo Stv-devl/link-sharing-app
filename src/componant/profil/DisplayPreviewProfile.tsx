@@ -16,7 +16,7 @@ const DisplayPreviewProfile: React.FC<DisplayProfileProps> = ({ profile }) => {
       {profile?.image && (
         <div className="absolute top-5 left-12 w-[108px] h-[108px] border-4 border-dark-purple rounded-full flex justify-center items-center bg-white">
           <Image
-            src={profile.image}
+            src={typeof profile.image === 'string' ? profile.image : ''}
             alt="Profile"
             width={100}
             height={100}
