@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import Option from '../dropdown/Option';
 import { options } from '@/constantes/constantes';
-import useFilterOptions from '../../../hook/manage/useManageOptions';
+import useManageOptions from '../../../hook/manage/useManageOptions';
 import CustomDefaultOption from './CustomDefaultOption';
 import { DropDownProps, LinkDetail } from '@/types/types';
 import customStyles from './CustomStyle';
@@ -19,7 +19,7 @@ const Dropdown: React.FC<DropDownProps> = ({
   handleOption,
   error,
 }) => {
-  const { defaultOption, filteredOptions } = useFilterOptions({
+  const { defaultOption, filteredOptions } = useManageOptions({
     value,
     options,
   });
