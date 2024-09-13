@@ -46,7 +46,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
         </div>
         <p
           className={'cursor-pointer'}
-          onClick={() => handleDelete(link.key, link.isLocal)}
+          onClick={() => handleDelete(link.key, !link.isLocal)}
         >
           Remove
         </p>
