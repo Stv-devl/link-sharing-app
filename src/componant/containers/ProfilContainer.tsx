@@ -9,7 +9,7 @@ const ProfilContainer = () => {
     useUpdateProfile();
 
   return (
-    <div className="w-full h-full p-7 sm:p-10">
+    <div className="flex flex-col space-between w-full h-full p-7 sm:p-10">
       <h1 className="text-titleSmall sm:text-title text-black mb-4">
         Profile Details
       </h1>
@@ -20,7 +20,7 @@ const ProfilContainer = () => {
         <div className="mb-6">
           <ProfilePictureWrapper />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 sm:mb-[100px]">
           <ProfileDetailsWrapper
             profile={profile}
             handleChange={handleChange}

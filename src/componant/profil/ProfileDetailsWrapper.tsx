@@ -9,7 +9,7 @@ const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-3 bg-background-white p-5 rounded-lg">
-      <div className="flex flex-col items-center sm:flex-row gap-1 sm:gap-10">
+      <div className="flex flex-col sm:items-center sm:flex-row gap-1 sm:gap-10">
         <Input
           name="firstname"
           label="First name*"
@@ -22,7 +22,7 @@ const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
           iconSrc=""
         />
       </div>
-      <div className="flex flex-col items-center sm:flex-row gap-1 sm:gap-10">
+      <div className="flex flex-col sm:items-center sm:flex-row gap-1 sm:gap-10">
         <Input
           name="lastname"
           label="Last name*"
@@ -35,7 +35,7 @@ const ProfileDetailsWrapper: React.FC<ProfileDetailsWrapperProps> = ({
           iconSrc=""
         />
       </div>
-      <div className="flex flex-col items-center sm:flex-row gap-1 sm:gap-10">
+      <div className="flex flex-col sm:items-center sm:flex-row gap-1 sm:gap-10">
         <Input
           name="email"
           label="Email"

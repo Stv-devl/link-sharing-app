@@ -14,10 +14,10 @@ const LogoutWrapper: React.FC<{ onClick: () => void }> = ({
     <button
       onClick={onClick}
       className={
-        'flex items-center justify-center border border-dark-purple text-dark-purple hover:bg-lightest-purple rounded-lg w-[52px] h-[42px] sm:w-[46px] sm:h-[46px] cursor-pointer'
+        'flex items-center justify-center border border-dark-purple text-dark-purple hover:bg-lightest-purple rounded-lg w-[52px] h-11 sm:w-12 sm:h-12 cursor-pointer'
       }
     >
-      <LogoutIcon className={'w-[20px] h-[20px]'} />
+      <LogoutIcon className={'w-5 h-5'} />
     </button>
   );
 };

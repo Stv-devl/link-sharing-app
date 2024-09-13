@@ -15,7 +15,7 @@ const Banner = () => {
 
   return (
     <header className="mx-auto my-5 bg-white sm:w-[95%] sm:rounded-lg">
-      <nav className="flex justify-between items-center  px-4 lg:px-6 py-4 h-[78px]">
+      <nav className="flex justify-between items-center px-4 lg:px-6 py-4 h-[78px]">
         <LogoWrapper />
         <div className="flex gap-2 lg:gap-4 ">
           {navItems.map((item) => (

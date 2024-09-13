@@ -15,17 +15,14 @@ const SettingContainer = () => {
     handleSubmit,
   } = useAddLink();
 
-  const containerClass =
-    link && link.length > 2
-      ? ' h-[350px] sm:h-[550px] overflow-y-auto '
-      : 'h-auto';
+  const containerClass = link && link.length > 2 ? 'overflow-y-auto ' : '';
 
   return (
     <div className="w-full h-full p-7 sm:p-10">
       <h1 className="text-titleSmall sm:text-title text-black mb-4">
         Customize your links
       </h1>
-      <p className="mb-10">
+      <p className="mb-6">
         Add/edit/remove links below and then share all your profiles with the
         world!
       </p>
@@ -33,11 +30,11 @@ const SettingContainer = () => {
         <Button label={'+ Add new link'} onClick={handleAddLink} />
       </div>
       <form
-        className={'flex flex-col gap-6'}
+        className={'flex flex-col gap-3'}
         action="submit"
         onSubmit={handleSubmit}
       >
-        <div className={`${containerClass} flex flex-col gap-6`}>
+        <div className={`${containerClass} flex flex-col gap-6 h-[470px] `}>
           {link && link.length > 0 ? (
             link.map((link, index) => (
               <CreateLink
@@ -54,8 +51,8 @@ const SettingContainer = () => {
             <EmptySetting />
           )}
         </div>
-        <div className="flex justify-end w-full border-t ">
-          <div className="w-full sm:w-[91px] mt-6">
+        <div className="flex justify-end w-full border-t mt-6 ">
+          <div className="w-full sm:w-[91px] mt-6 ">
             <Button label={'Save'} />
           </div>
         </div>

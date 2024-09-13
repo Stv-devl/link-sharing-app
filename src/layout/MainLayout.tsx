@@ -1,10 +1,12 @@
 import React from 'react';
 import Banner from '../componant/banner/Banner';
+import Modal from '@/componant/modal/Modal';
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <main className="h-screen w-full">
+  <main className="w-full">
     <Banner />
-    <section className="w-full h-[86%] px-[4%] sm:px-0 ">{children}</section>
+    <section className="w-full px-[4%] sm:px-0 ">{children}</section>
+    <Modal />
   </main>
 );
 

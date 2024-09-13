@@ -7,7 +7,7 @@ const LogoWrapper: React.FC = (): JSX.Element => {
   const isMobile = useMediaQuery({ query: '(min-width: 640px)' });
 
   return isMobile! ? (
-    <div className="w-[120px] h-[40px] lg:w-[183px] lg:h-[40px]">
+    <div className="w-[120px] h-10 lg:w-[183px] lg:h-10">
       <IconLinkLarge className="w-full h-full max-w-full max-h-full" />
     </div>
   ) : (

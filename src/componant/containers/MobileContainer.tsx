@@ -39,7 +39,7 @@ const MobileContainer = () => {
             <LinkCard />
           </div>
           {link && link.length > 5 && (
-            <span className="absolute bottom-6 left-[80px] text-sm">
+            <span className="absolute z-99 bottom-[3%] left-1/2 text-sm transform -translate-x-1/2">
               Scroll up and down
             </span>
           )}

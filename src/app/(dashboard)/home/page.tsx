@@ -20,11 +20,11 @@ const Home: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="flex gap-5 mx-auto sm:w-[95%] h-full">
-        <div className="bg-white lg:block w-[45%] h-full hidden rounded-lg">
+      <div className="flex gap-5 mx-auto sm:w-[95%]">
+        <div className=" lg:flex lg:justify-center bg-white w-[45%] hidden rounded-lg mb-6">
           <MobileContainer />
         </div>
-        <div className="bg-white w-full lg:w-[60%] h-full rounded-lg">
+        <div className="bg-white w-full lg:w-[60%] rounded-lg mb-6">
           <SettingContainer />
         </div>
       </div>

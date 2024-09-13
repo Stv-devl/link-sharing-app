@@ -6,6 +6,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { LinkWrapperProps } from '@/types/types';
 import { formatText } from '@/utils/formatText';
 import { usePathname } from 'next/navigation';
+import useModalStore from '../../../store/useModalStore';
 
 const LinkWrapper: React.FC<LinkWrapperProps> = ({ id, label, color, url }) => {
   const pathname = usePathname();
@@ -18,7 +19,30 @@ const LinkWrapper: React.FC<LinkWrapperProps> = ({ id, label, color, url }) => {
   const IconComponent = icones[iconKey];
 
   const handleClick = () => {
-    console.log(url);
+    if (url) {
+      const validUrl =
+        url.startsWith('http://') || url.startsWith('https://')
+          ? url
+          : `https://${url}`;
+      navigator.clipboard
+        .writeText(validUrl)
+        .then(() => {
+          console.log('URL copied to clipboard');
+        })
+        .catch((err) => {
+          console.error('Failed to copy URL: ', err);
+        });
+
+      if (isPreviewPage) {
+        useModalStore
+          .getState()
+          .openModal('Your link have been copied in the clipboard!');
+      } else {
+        window.open(validUrl, '_blank');
+      }
+    } else {
+      console.log('No URL provided');
+    }
   };
 
   return (

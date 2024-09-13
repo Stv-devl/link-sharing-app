@@ -10,7 +10,7 @@ const NavWrapper: React.FC<IconWrapperType> = ({ type, isSelected, link }) => {
   return (
     <Link
       href={link}
-      className={`group flex items-center justify-center gap-2 rounded-lg transition duration-500 font-semibold w-[52px] h-[42px] sm:h-[46px]  ${
+      className={`group flex items-center justify-center gap-2 rounded-lg transition duration-500 font-semibold w-[52px] h-11 sm:h-12  ${
         type === 'link' ? 'sm:w-[90px]' : 'sm:w-[150px]'
       }  ${
         isSelected
@@ -19,7 +19,7 @@ const NavWrapper: React.FC<IconWrapperType> = ({ type, isSelected, link }) => {
       }`}
     >
       <Icon
-        className={`transition duration-500 fill-current w-[20px] h-[20px]
+        className={`transition duration-500 fill-current w-5 h-5
           ${isSelected ? 'text-dark-purple' : 'group-hover:text-dark-purple'}`}
         aria-hidden="true"
       />

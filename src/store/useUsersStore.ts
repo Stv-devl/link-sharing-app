@@ -14,6 +14,7 @@ import apiGetUsers from '../service/apiData';
 import apiUpdateLink from '@/service/apiUpdateLink';
 import apiDelete from '@/service/apiDelete';
 import apiUpdateProfile from '@/service/apiUpdateProfile';
+import useModalStore from './useModalStore';
 
 const useUserStore = create<useRouterDataState>((set, get) => ({
   user: null,
@@ -69,14 +70,17 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     const { user } = get();
     if (!user) return;
 
-    console.log('updated profile backend', updatedProfile);
     try {
       const response: UpdateProfileResponse = await apiUpdateProfile(
         user._id,
         updatedProfile
       );
+
       const profileResponse = response.profile ?? {};
       console.log(profileResponse);
+      useModalStore
+        .getState()
+        .openModal('Your changes have been successfully saved!');
     } catch (error) {
       console.error('Error updating the profile:', error);
     }
@@ -117,7 +121,6 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       isLocal: false,
     }));
     console.log('updated link backend', updatedLinks);
-
     try {
       const response: UpdateLinkResponse = await apiUpdateLink(
         user._id,
@@ -125,6 +128,9 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       );
       const linkResponse = response.links ?? [];
       console.log(linkResponse);
+      useModalStore
+        .getState()
+        .openModal('Your changes have been successfully saved!');
     } catch (error) {
       console.error('Error updating the links:', error);
     }
