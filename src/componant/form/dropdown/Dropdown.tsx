@@ -8,8 +8,15 @@ import { DropDownProps, LinkDetail } from '@/types/types';
 import customStyles from './CustomStyle';
 
 /**
- * Dropdown component
- * Renders a dropdown for selecting the number of entries to display.
+ * Dropdown renders a select input for choosing options, such as the number of entries to display.
+ * It displays a label, handles option selection, and shows an error message if applicable.
+ * @param {DropDownProps} props - Properties for the Dropdown component.
+ * @param {string} props.labelText - The label text for the dropdown.
+ * @param {string} props.value - The currently selected value.
+ * @param {string} props.name - The name attribute for the dropdown.
+ * @param {(selectedOption: LinkDetail) => void} props.handleOption - Callback function triggered on option selection.
+ * @param {string} props.error - Error message to display below the dropdown.
+ * @returns {JSX.Element} The rendered Dropdown component.
  */
 
 const Dropdown: React.FC<DropDownProps> = ({
@@ -18,7 +25,7 @@ const Dropdown: React.FC<DropDownProps> = ({
   name,
   handleOption,
   error,
-}) => {
+}: DropDownProps): JSX.Element => {
   const { defaultOption, filteredOptions } = useManageOptions({
     value,
     options,

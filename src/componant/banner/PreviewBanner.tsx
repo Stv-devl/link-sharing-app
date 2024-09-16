@@ -2,6 +2,12 @@ import React from 'react';
 import Button from '../button/Button';
 import PreviewBtn from '../button/PreviewBtn';
 
+/**
+ * PreviewBanner component renders a banner with a back button and share button.
+ * It is used in the preview mode of the application.
+ * @returns {JSX.Element} The PreviewBanner component containing the back button and share button.
+ */
+
 const PreviewBanner = () => {
   return (
     <header className="relative z-20 mx-auto py-5 sm:py-0 sm:my-5 bg-white sm:w-[95%] sm:rounded-lg">

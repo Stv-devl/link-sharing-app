@@ -5,7 +5,12 @@ import { usePathname } from 'next/navigation';
 import useUserStore from '@/store/useUsersStore';
 import DisplayProfile from '../profil/DisplayPreviewProfile';
 
-const MobileContainer = () => {
+/**
+ * Renders the MobileContainer component, which displays the user's profile and links.
+ * The component is wrapped with authentication to ensure access for authenticated users only.
+ * @returns {JSX.Element} The rendered MobileContainer component, which may include a loading indicator or error message.
+ */
+const MobileContainer = (): JSX.Element => {
   const { link, profile } = useUserStore();
 
   const containerClass =

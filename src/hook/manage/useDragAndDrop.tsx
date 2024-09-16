@@ -10,7 +10,16 @@ import {
 import { arrayMove } from '@dnd-kit/sortable';
 import { LinkDetail } from '@/types/types';
 
-const useDragAndDrop = () => {
+/**
+ * Custom hook for handling drag-and-drop functionality.
+ * Manages link reordering and updates the state upon drag events.
+ * @returns {object} An object containing:
+ * - `link`: Array of current links.
+ * - `sensors`: Sensors configuration for drag-and-drop.
+ * - `handleDragEnd`: Function to handle the end of a drag event.
+ */
+
+const useDragAndDrop = (): object => {
   const { link, updateLinkLocal } = useUserStore();
 
   const handleItemChange = useCallback(

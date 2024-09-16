@@ -81,6 +81,14 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 }
 
+/**
+ * Handles a PUT request to update a user's profile.
+ * Validates the input data, updates user information in the database, and uploads a new profile image if provided.
+ * Returns appropriate HTTP responses based on the result of the operation.
+ * @param {Request} request - The incoming HTTP request containing form data for updating the user profile.
+ * @returns {Promise<NextResponse>} A promise that resolves to an HTTP response indicating the outcome of the update operation.
+ */
+
 export async function PUT(request: Request): Promise<NextResponse> {
   try {
     const client = await clientPromise;
@@ -136,6 +144,13 @@ export async function PUT(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
+/**
+ *
+ * @param request
+ * @returns
+ */
+
 export async function DELETE(request: Request): Promise<NextResponse> {
   try {
     const { userId, linkKey } = await request.json();

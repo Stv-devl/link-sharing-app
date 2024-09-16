@@ -3,6 +3,13 @@ import { clientPromise } from '../../../../lib/mongod';
 import { ObjectId } from 'mongodb';
 import { LinkDetail } from '@/types/types';
 
+/**
+ * Handles PUT requests to update the links of a user.
+ * Validates the request body and updates the links in the database.
+ * @param request
+ * @returns Returns a response indicating the success or failure of the operation.
+ */
+
 export async function PUT(request: Request): Promise<NextResponse> {
   try {
     const client = await clientPromise;

@@ -1,5 +1,13 @@
 import { LinkDetail, UpdateLinkResponse } from '@/types/types';
 
+/**
+ * Updates a user's links by sending a PUT request to the API.
+ * Sends the userId and updated links to the server and handles the response.
+ * @param {string} userId - The ID of the user.
+ * @param {LinkDetail[]} links - An array of link details to be updated.
+ * @returns {Promise<UpdateLinkResponse>} A promise that resolves to the API response after updating the links.
+ */
+
 const apiUpdateLink = async (
   userId: string,
   links: LinkDetail[]

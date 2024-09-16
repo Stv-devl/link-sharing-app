@@ -2,7 +2,17 @@ import React from 'react';
 import { icones } from '../../../constantes/constantes';
 import { OptionsProps } from '@/types/types';
 
-const Option = (props: OptionsProps) => {
+/**
+ * Option renders a dropdown menu option with an associated icon.
+ * The icon is determined based on the option's label.
+ * @param {OptionsProps} props - Properties for the Option component.
+ * @param {LinkDetail} props.data - Data object containing the label for the option.
+ * @param {React.Ref<HTMLDivElement>} props.innerRef - Reference to the inner div element.
+ * @param {React.HTMLAttributes<HTMLDivElement>} props.innerProps - Additional props for the inner div element.
+ * @returns {JSX.Element} The rendered Option component.
+ */
+
+const Option = (props: OptionsProps): JSX.Element => {
   const { data, innerRef, innerProps } = props;
 
   const isFrontend = data.label === 'Frontend Mentor';

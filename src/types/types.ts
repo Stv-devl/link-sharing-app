@@ -70,6 +70,13 @@ export interface useRouterDataState {
   removeLinkBack: (linkKey: string) => void;
 }
 
+export interface ModalState {
+  isOpen: boolean;
+  content: string | null;
+  openModal: (content: string) => void;
+  closeModal: () => void;
+}
+
 //.............................//
 //.........form types..........//
 //.............................//
@@ -90,6 +97,7 @@ export interface FormDataSignUp {
   password: string;
   repeat: string;
 }
+
 export interface UseSignUpReturn {
   handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -210,6 +218,21 @@ export interface FieldErrors {
   };
 }
 
+export interface UseAddLinkReturn {
+  link: LinkDetail[] | null;
+  removeLink: (linkKey: string) => void;
+  removeLinkBack: (linkKey: string) => void;
+  linkErrors: LinkErrors;
+  handleAddLink: () => void;
+  handleChange: (
+    index: number,
+    key: string,
+    field: string,
+    value: LinkDetail | UrlValue
+  ) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+}
+
 //.............................//
 //....useManageOption Hook.....//
 //.............................//
@@ -218,9 +241,6 @@ export interface UseManageOptionsProps {
   value: string;
   options: LinkDetailArray;
 }
-//.............................//
-//....useDragAndDrop Hook......//
-//.............................//
 
 //.............................//
 //.......react-select..........//

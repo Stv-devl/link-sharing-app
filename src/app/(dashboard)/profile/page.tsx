@@ -9,7 +9,16 @@ import Loading from '@/componant/loading/Loading';
 import Error from '@/componant/error/Error';
 import useUserStore from '@/store/useUsersStore';
 
-const Profil = () => {
+/**
+ * Renders the Profile page component, which fetches user data upon mounting.
+ * Displays a loading indicator during data fetching, an error message if fetching fails,
+ * and the main content when data is successfully retrieved.
+ * The component is wrapped with authentication to ensure access for authenticated users only.
+ * @component
+ * @returns {JSX.Element} The rendered Profile component, which may include a loading indicator or error message.
+ */
+
+const Profil = (): JSX.Element => {
   const { loading, error, fetchData } = useUserStore();
 
   useEffect(() => {

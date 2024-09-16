@@ -1,9 +1,21 @@
 import React, { useMemo } from 'react';
-import useAddLink from '../data/useAddLink';
 import { UseManageOptionsProps } from '@/types/types';
+import useUserStore from '@/store/useUsersStore';
 
-const useManageOptions = ({ value, options }: UseManageOptionsProps) => {
-  const { link } = useAddLink();
+/**
+ * Custom hook for handling drag-and-drop functionality.
+ * Manages link reordering and updates the state upon drag events.
+ * @returns {object} An object containing:
+ * - `link`: Array of current links.
+ * - `sensors`: Sensors configuration for drag-and-drop.
+ * - `handleDragEnd`: Function to handle the end of a drag event.
+ */
+
+const useManageOptions = ({
+  value,
+  options,
+}: UseManageOptionsProps): object => {
+  const link = useUserStore((state) => state.link);
 
   const existingLabels = useMemo(
     () => link && link.map((link) => link.label),

@@ -4,7 +4,21 @@ import IconLinkSvg from '../../../assets/icon-link.svg';
 import IconProfilSvg from '../../../assets/icon-profile-details-header.svg';
 import { IconWrapperType } from '@/types/types';
 
-const NavWrapper: React.FC<IconWrapperType> = ({ type, isSelected, link }) => {
+/**
+ * NavWrapper renders a navigation link with an icon and label.
+ * It adjusts styling based on the link type and selection state.
+ * @param {IconWrapperType} props - Component properties.
+ * @param {'link' | 'profile'} props.type - The type of navigation link.
+ * @param {boolean} props.isSelected - Indicates if the link is currently selected.
+ * @param {string} props.link - The URL to navigate to.
+ * @returns {JSX.Element} The NavWrapper component.
+ */
+
+const NavWrapper: React.FC<IconWrapperType> = ({
+  type,
+  isSelected,
+  link,
+}: IconWrapperType): JSX.Element => {
   const Icon = type === 'link' ? IconLinkSvg : IconProfilSvg;
 
   return (

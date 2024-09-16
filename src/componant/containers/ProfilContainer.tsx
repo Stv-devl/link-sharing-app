@@ -4,6 +4,12 @@ import ProfileDetailsWrapper from '../profil/ProfileDetailsWrapper';
 import Button from '../button/Button';
 import useUpdateProfile from '@/hook/data/useUpdateProfile';
 
+/**
+ * ProfilContainer component renders the profile details form and handles form submission.
+ * It includes the ProfilePictureWrapper and ProfileDetailsWrapper components.
+ * @returns {JSX.Element} The rendered ProfilContainer component, which may include a loading indicator or error message.
+ */
+
 const ProfilContainer = () => {
   const { profile, profilErrors, setFile, handleChange, handleSubmit } =
     useUpdateProfile();

@@ -4,6 +4,21 @@ import Input from '@/componant/form/input/Input';
 import { formatText } from '@/utils/formatText';
 import { CreateLinkProps, LinkDetail, UrlValue } from '@/types/types';
 
+/**
+ * CreateLink renders a form section for creating or editing a link.
+ * It includes a dropdown for selecting the platform, an input for entering the URL,
+ * and a remove button to delete the link. The component handles input changes,
+ * manages link removal, and displays validation errors if present.
+ * @param {CreateLinkProps} props - Properties for the CreateLink component.
+ * @param {LinkDetail} props.link - The link data containing label, url, key, and isLocal.
+ * @param {number} props.number - The index number of the link.
+ * @param {(linkKey: string) => void} props.removeLink - Function to remove a local link.
+ * @param {(linkKey: string) => void} props.removeLinkBack - Function to remove a link from backend.
+ * @param {(number: number, key: string, field: string, value: any) => void} props.handleChange - Function to handle changes in dropdown or input.
+ * @param {Record<number, { url?: string; label?: string }>} props.linkErrors - Object containing validation errors for each link.
+ * @returns {JSX.Element} The rendered CreateLink component.
+ */
+
 const CreateLink: React.FC<CreateLinkProps> = ({
   link,
   number,
@@ -11,7 +26,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
   removeLinkBack,
   handleChange,
   linkErrors,
-}) => {
+}: CreateLinkProps): JSX.Element => {
   const handleDropdownChange = (selectedOption: LinkDetail) => {
     handleChange(number, link.key, 'label', selectedOption);
   };

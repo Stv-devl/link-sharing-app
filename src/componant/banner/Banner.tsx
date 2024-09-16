@@ -9,7 +9,13 @@ import LogoutWrapper from './wrappers/LogoutWrapper';
 import PreviewBtn from '../button/PreviewBtn';
 import { navItems } from '@/constantes/constantes';
 
-const Banner = () => {
+/**
+ * Banner component renders the navigation bar and logout button at the top of the application.
+ * It includes a LogoWrapper component for the logo and NavWrapper components for the navigation links.
+ * @returns {JSX.Element} The Banner component containing the navigation bar and logout button.
+ */
+
+const Banner = (): JSX.Element => {
   const { handleLogout } = useIsAuthenticated();
   const pathname = usePathname();
 

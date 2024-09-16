@@ -10,7 +10,16 @@ import LinkCard from '@/componant/links/display/LinkCard';
 import DisplayPreviewProfile from '@/componant/profil/DisplayPreviewProfile';
 import Modal from '@/componant/modal/Modal';
 
-const Preview = () => {
+/**
+ * Renders the Preview page component, which fetches user data upon mounting.
+ * Displays a loading indicator during data fetching, an error message if fetching fails,
+ * and the main content when data is successfully retrieved.
+ * The component is wrapped with authentication to ensure access for authenticated users only.
+ * @component
+ * @returns {JSX.Element} The rendered Preview component, which may include a loading indicator or error message
+ */
+
+const Preview = (): JSX.Element => {
   const { link, profile, loading, error, fetchData } = useUserStore();
 
   useEffect(() => {

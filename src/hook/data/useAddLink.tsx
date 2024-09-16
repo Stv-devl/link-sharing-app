@@ -6,8 +6,22 @@ import { linkValidationSchema } from '@/utils/validationShema';
 import { generateId } from '@/utils/generateId';
 import * as Yup from 'yup';
 import { FieldErrors, LinkDetail, LinkErrors, UrlValue } from '@/types/types';
+import { UseAddLinkReturn } from '../../types/types';
 
-const useAddLink = () => {
+/**
+ * Custom hook for managing user links.
+ * Handles adding, updating, removing links, and form submission.
+ * @returns {object} An object containing:
+ * - `link`: Array of current user links.
+ * - `removeLink`: Function to remove a link.
+ * - `removeLinkBack`: Function to remove a link from the backend.
+ * - `linkErrors`: Validation errors for links.
+ * - `handleAddLink`: Function to add a new link.
+ * - `handleChange`: Function to handle changes in link fields.
+ * - `handleSubmit`: Function to submit the links form.
+ */
+
+const useAddLink = (): UseAddLinkReturn => {
   const {
     link,
     addLink,
@@ -76,10 +90,6 @@ const useAddLink = () => {
     [link, updateLinkLocal, updateLinkErrors]
   );
 
-  /**
-   * Handles form submission for logging in the user.
-   * @param e - The form submission event.
-   */
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (link !== null) {

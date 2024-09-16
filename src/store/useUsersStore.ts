@@ -22,12 +22,28 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
   loading: false,
   error: null,
 
+  /**
+   * Sets the current user.
+   * @param {Users} user - The user data to set.
+   */
   setUser: (user: Users) => set({ user }),
 
+  /**
+   * Sets the user's links.
+   * @param {LinkDetail[]} link - An array of link details to set.
+   */
   setLink: (link: LinkDetail[]) => set({ link }),
 
+  /**
+   * Sets the user's profile.
+   * @param {ProfilDetail} profile - The profile details to set.
+   */
   setProfil: (profile: ProfilDetail) => set({ profile }),
 
+  /**
+   * Fetches user data from the API and updates the store.
+   * @returns {Promise<void>} A promise that resolves when data fetching is complete.
+   */
   fetchData: async (): Promise<void> => {
     const { userId } = useAuthStore.getState();
     set({ loading: true, error: null });
@@ -51,6 +67,10 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     }
   },
 
+  /**
+   * Updates the user's profile locally without making an API call.
+   * @param {ProfilDetail} value - The profile details to update.
+   */
   updateProfileLocal: (value: ProfilDetail) => {
     set((state) => {
       if (typeof state.profile !== 'object' || state.profile === null)
@@ -65,7 +85,12 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     });
   },
 
-  updateProfileBack: async (updatedProfile: ProfilDetail) => {
+  /**
+   * Updates the user's profile in the backend and shows a success modal.
+   * @param {ProfilDetail} updatedProfile - The updated profile details.
+   * @returns {Promise<void>} A promise that resolves when the profile is updated.
+   */
+  updateProfileBack: async (updatedProfile: ProfilDetail): Promise<void> => {
     const { user } = get();
     if (!user) return;
 
@@ -85,11 +110,20 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     }
   },
 
+  /**
+   * Adds a new link to the user's link list.
+   * @param {LinkDetail} newLink - The new link to add.
+   */
   addLink: (newLink: LinkDetail) =>
     set((state) => ({
       link: state.link ? [...state.link, newLink] : [newLink],
     })),
 
+  /**
+   * Updates a link locally without making an API call.
+   * @param {string | null} oldKey - The key of the link to update. If null, replaces all links.
+   * @param {LinkDetail | LinkDetail[]} updatedLink - The updated link or array of links.
+   */
   updateLinkLocal: (
     oldKey: string | null,
     updatedLink: LinkDetail | LinkDetail[]
@@ -111,6 +145,11 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       };
     }),
 
+  /**
+   * Updates the user's links in the backend after validation and shows a success modal.
+   * @param {LinkDetailArray} validateLinks - The array of validated links to update.
+   * @returns {Promise<void>} A promise that resolves when the links are updated.
+   */
   updateLinkBack: async (validateLinks: LinkDetailArray): Promise<void> => {
     const { user } = get();
     if (!user) return;
@@ -135,11 +174,20 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
     }
   },
 
+  /**
+   * Removes a link locally without making an API call.
+   * @param {string} linkKey - The key of the link to remove.
+   */
   removeLink: (linkKey: string) =>
     set((state) => ({
       link: state.link ? state.link.filter((link) => link.key !== linkKey) : [],
     })),
 
+  /**
+   * Removes a link from the backend and updates the local state.
+   * @param {string} linkKey - The key of the link to remove.
+   * @returns {Promise<void>} A promise that resolves when the link is removed.
+   */
   removeLinkBack: async (linkKey: string): Promise<void> => {
     const { user } = get();
     if (!user) return;

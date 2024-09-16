@@ -7,9 +7,17 @@ import { ProfilePictureWrapperProps } from '@/types/types';
 const MAX_IMAGE_DIMENSION = 1024;
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/png'];
 
+/**
+ * ProfilePictureWrapper allows users to upload and change their profile picture.
+ * It handles file selection, validates the file type and dimensions, and updates the profile image.
+ * @param {ProfilePictureWrapperProps} props - Properties for the ProfilePictureWrapper component.
+ * @param {(file: File) => void} props.setFile - Function to set the selected image file.
+ * @returns {JSX.Element} The rendered ProfilePictureWrapper component.
+ */
+
 const ProfilePictureWrapper: React.FC<ProfilePictureWrapperProps> = ({
   setFile,
-}) => {
+}: ProfilePictureWrapperProps): JSX.Element => {
   const profile = useUserStore((state) => state.profile);
   const updateProfileLocal = useUserStore((state) => state.updateProfileLocal);
   const fileInputRef = useRef<HTMLInputElement>(null);

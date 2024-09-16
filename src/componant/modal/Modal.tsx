@@ -4,6 +4,12 @@ import React from 'react';
 import useModalStore from '../../store/useModalStore';
 import Image from 'next/image';
 
+/**
+ * Modal component renders a modal dialog with a close button and a content area.
+ * It is used to display messages or links copied to the clipboard.
+ * @returns {JSX.Element} The rendered Modal component.
+ */
+
 const Modal: React.FC = () => {
   const { isOpen, content, closeModal } = useModalStore((state) => ({
     isOpen: state.isOpen,

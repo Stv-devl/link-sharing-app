@@ -8,7 +8,16 @@ import MainLayout from '../../../layout/MainLayout';
 import MobileContainer from '@/componant/containers/MobileContainer';
 import SettingContainer from '@/componant/containers/SettingContainer';
 
-const Home: React.FC = () => {
+/**
+ * Renders the Home page component, which fetches user data upon mounting.
+ * Displays a loading indicator during data fetching, an error message if fetching fails,
+ * and the main content when data is successfully retrieved.
+ * The component is wrapped with authentication to ensure access for authenticated users only.
+ * @component
+ * @returns {JSX.Element} The rendered Home component, which may include a loading indicator or error message.
+ */
+
+const Home: React.FC = (): JSX.Element => {
   const { loading, error, fetchData } = useUserStore();
 
   useEffect(() => {

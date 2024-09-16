@@ -3,7 +3,18 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const DisplayPreviewProfile: React.FC<DisplayProfileProps> = ({ profile }) => {
+/**
+ * DisplayPreviewProfile renders the user's profile image, name, and email.
+ * It shows a placeholder image if the profile image is not available
+ * and displays the user's name and email when provided.
+ * @param {DisplayProfileProps} props - Properties for the DisplayPreviewProfile component.
+ * @param {ProfilDetail} props.profile - The user's profile data, including firstname, lastname, email, and image.
+ * @returns {JSX.Element} The rendered DisplayPreviewProfile component.
+ */
+
+const DisplayPreviewProfile: React.FC<DisplayProfileProps> = ({
+  profile,
+}: DisplayProfileProps): JSX.Element | null => {
   const pathname = usePathname();
   const isPreviewPage = pathname === '/preview';
 

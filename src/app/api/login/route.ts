@@ -11,6 +11,7 @@ const secretKey = new TextEncoder().encode(process.env.SECRET_KEY as string);
  * @param {Request} request - The incoming HTTP request object containing the user's email and password.
  * @returns {Promise<NextResponse>} A response containing the authentication status, and in case of success, a JWT and user ID.
  */
+
 export async function POST(request: Request): Promise<NextResponse> {
   try {
     const { email, password } = await request.json();

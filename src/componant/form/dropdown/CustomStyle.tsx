@@ -1,6 +1,12 @@
 import { StylesConfig } from 'react-select';
 import { OptionTypeProps } from '@/types/types';
 
+/**
+ * Defines custom styles for the react-select dropdown menu.
+ * Configures styles for control, value container, indicator separator, and dropdown indicator.
+ * @type {StylesConfig<OptionTypeProps, false>}
+ */
+
 const customStyles: StylesConfig<OptionTypeProps, false> = {
   control: (provided, state) => ({
     ...provided,

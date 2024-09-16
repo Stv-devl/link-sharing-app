@@ -1,5 +1,13 @@
 import { ProfilDetail, UpdateProfileResponse } from '@/types/types';
 
+/**
+ * Updates a user's profile by sending a PUT request with profile data.
+ * Handles image uploads if provided.
+ * @param {string} userId - The ID of the user.
+ * @param {ProfilDetail} updatedProfile - The updated profile details.
+ * @returns {Promise<UpdateProfileResponse>} The response from the API after updating the profile.
+ */
+
 const apiUpdateProfile = async (
   userId: string,
   updatedProfile: ProfilDetail

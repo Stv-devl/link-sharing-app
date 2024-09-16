@@ -4,6 +4,18 @@ import * as Yup from 'yup';
 import { profileValidationSchema } from '@/utils/validationShema';
 import { ProfileErrors } from '@/types/types';
 
+/**
+ * Custom hook for updating user profile.
+ * Manages profile state, handles input changes, and submits profile data.
+ * @returns {object} An object containing:
+ * - `profile`: The current user profile data.
+ * - `profilErrors`: Validation errors for the profile fields.
+ * - `setProfilErrors`: Function to set validation errors.
+ * - `setFile`: Function to set the profile image file.
+ * - `handleChange`: Function to handle input changes.
+ * - `handleSubmit`: Function to handle form submission for updating the profile.
+ */
+
 const useUpdateProfile = () => {
   const { profile, updateProfileLocal, updateProfileBack } = useUserStore();
 

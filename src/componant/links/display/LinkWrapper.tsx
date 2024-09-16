@@ -8,7 +8,23 @@ import { formatText } from '@/utils/formatText';
 import { usePathname } from 'next/navigation';
 import useModalStore from '../../../store/useModalStore';
 
-const LinkWrapper: React.FC<LinkWrapperProps> = ({ id, label, color, url }) => {
+/**
+ * LinkWrapper renders a sortable link item with an icon, label, and interactive behavior.
+ * It allows users to click the link to either copy the URL to the clipboard or open it in a new tab,
+ * depending on the current page. The component is draggable and can be reordered within a list.
+ * @param {LinkWrapperProps} props - Properties for the LinkWrapper component.
+ * @param {string} props.id - Unique identifier for the link, used for sorting.
+ * @param {string} props.label - The label text to display for the link.
+ * @param {string} props.color - The background color of the link item.
+ * @param {string} props.url - The URL associated with the link, to open or copy.
+ * @returns {JSX.Element} The rendered LinkWrapper component.
+ */
+const LinkWrapper: React.FC<LinkWrapperProps> = ({
+  id,
+  label,
+  color,
+  url,
+}: LinkWrapperProps): JSX.Element => {
   const pathname = usePathname();
   const isPreviewPage = pathname === '/preview';
 

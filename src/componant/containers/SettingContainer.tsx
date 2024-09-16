@@ -4,7 +4,13 @@ import CreateLink from '../links/setting/CreateLink';
 import useAddLink from '@/hook/data/useAddLink';
 import EmptySetting from '../links/setting/EmptySetting';
 
-const SettingContainer = () => {
+/**
+ * SettingContainer component renders the link settings form and handles form submission.
+ * It includes the CreateLink component for each link and the EmptySetting component when there are no links.
+ * @returns {JSX.Element} The rendered SettingContainer component, which may include a loading indicator or error message.
+ */
+
+const SettingContainer = (): JSX.Element => {
   const {
     link,
     removeLink,

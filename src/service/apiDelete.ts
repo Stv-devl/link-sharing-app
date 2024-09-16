@@ -1,3 +1,11 @@
+/**
+ * Deletes a user's link based on userId and linkKey.
+ * Sends a DELETE request to the API and handles the response.
+ * @param {string} userId - The ID of the user.
+ * @param {string} linkKey - The key of the link to delete.
+ * @returns {Promise<void>} A promise that resolves when the deletion is complete.
+ */
+
 async function apiDelete(userId: string, linkKey: string) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {

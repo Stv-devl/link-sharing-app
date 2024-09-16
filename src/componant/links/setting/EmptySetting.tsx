@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
 
-const EmptySetting = () => {
+/**
+ *  EmptySetting component renders a placeholder image when there are no links.
+ *  It displays a message indicating that there are no links.
+ * @returns {JSX.Element} The EmptySetting component.
+ */
+
+const EmptySetting = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center gap-8 w-full h-full bg-background-white rounded-lg p-7 sm:p-0">
       <Image

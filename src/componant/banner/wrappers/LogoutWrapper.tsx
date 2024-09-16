@@ -2,9 +2,12 @@ import React from 'react';
 import LogoutIcon from '../../../assets/icon-logout.svg';
 
 /**
- * Renders a serie icon with dynamic color based on selection state.
- * The icon changes color when selected and includes a hover effect when not selected.
- * @returns {JSX.Element} The home icon component.
+ * LogoutWrapper renders a logout button with dynamic styling and an icon.
+ * The button includes hover effects and triggers the provided `onClick` handler when clicked.
+ * @component
+ * @param {Object} props - Component properties.
+ * @param {() => void} props.onClick - Function to handle click events.
+ * @returns {JSX.Element} The LogoutWrapper component.
  */
 
 const LogoutWrapper: React.FC<{ onClick: () => void }> = ({
