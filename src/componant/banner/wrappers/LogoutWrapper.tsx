@@ -12,6 +12,8 @@ import LogoutIcon from '../../../assets/icon-logout.svg';
 
 const LogoutWrapper: React.FC<{ onClick: () => void }> = ({
   onClick,
+}: {
+  onClick: () => void;
 }): JSX.Element => {
   return (
     <button

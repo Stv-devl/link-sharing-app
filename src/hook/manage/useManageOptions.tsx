@@ -1,20 +1,19 @@
 import React, { useMemo } from 'react';
-import { UseManageOptionsProps } from '@/types/types';
+import { UseManageOptionReturn, UseManageOptionsProps } from '@/types/types';
 import useUserStore from '@/store/useUsersStore';
 
 /**
- * Custom hook for handling drag-and-drop functionality.
- * Manages link reordering and updates the state upon drag events.
- * @returns {object} An object containing:
- * - `link`: Array of current links.
- * - `sensors`: Sensors configuration for drag-and-drop.
- * - `handleDragEnd`: Function to handle the end of a drag event.
+ * Custom hook to manage options by filtering out existing labels.
+ * @param {UseManageOptionsProps} props - The input props for managing options.
+ * @param {string} props.value - The current selected value.
+ * @param {LinkDetail[]} props.options - The available options to choose from.
+ * @returns {UseManageOptionReturn} - The object containing the default option and filtered options.
  */
 
 const useManageOptions = ({
   value,
   options,
-}: UseManageOptionsProps): object => {
+}: UseManageOptionsProps): UseManageOptionReturn => {
   const link = useUserStore((state) => state.link);
 
   const existingLabels = useMemo(
@@ -23,7 +22,7 @@ const useManageOptions = ({
   );
 
   const defaultOption = useMemo(() => {
-    return options.find((option) => option.label === value);
+    return options.find((option) => option.label === value) ?? null;
   }, [value, options]);
 
   const filteredOptions = useMemo(() => {

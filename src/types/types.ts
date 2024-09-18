@@ -10,24 +10,21 @@ import { SingleValueProps } from 'react-select';
 //.............................//
 //.........data types..........//
 //.............................//
+
+//user
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
 export interface Users {
   _id: string;
-  credentials: {
-    email: string;
-    password: string;
-  };
+  credentials: UserCredentials;
   links: LinkDetail[] | [] | null;
   profile: ProfilDetail | null;
 }
 
-export interface Link {
-  key: string;
-  label: string;
-  url: string;
-  color: string;
-  isLocal: boolean;
-}
-
+//links
 export interface LinkDetail {
   key: string;
   label: string;
@@ -36,14 +33,15 @@ export interface LinkDetail {
   isLocal?: boolean;
 }
 
+export type LinkDetailArray = LinkDetail[];
+
+//profile
 export interface ProfilDetail {
   image?: File | string | null;
   firstname?: string;
   lastname?: string;
   email?: string;
 }
-
-export type LinkDetailArray = LinkDetail[];
 
 //.............................//
 //.........store types.........//
@@ -86,6 +84,9 @@ export interface ModalState {
 //.............................//
 //.........form types..........//
 //.............................//
+
+//login
+
 export interface FormDataLogin {
   email: string;
   password: string;
@@ -98,6 +99,7 @@ export interface UseLoginReturn {
   loginErrors: FormDataLogin;
 }
 
+//signup
 export interface FormDataSignUp {
   email: string;
   password: string;
@@ -111,6 +113,7 @@ export interface UseSignUpReturn {
   signupErrors: FormDataSignUp;
 }
 
+//errors
 export interface LinkError {
   url?: string;
   label?: string;
@@ -206,6 +209,7 @@ export interface DisplayProfileProps {
 export interface ProfilePictureWrapperProps {
   setFile: (file: File) => void;
 }
+
 //.............................//
 //.....drag and drop Hook......//
 //.............................//
@@ -251,6 +255,11 @@ export interface UseAddLinkReturn {
 //.............................//
 //....useManageOption Hook.....//
 //.............................//
+
+export interface UseManageOptionReturn {
+  defaultOption: LinkDetail | null;
+  filteredOptions: LinkDetail[];
+}
 
 export interface UseManageOptionsProps {
   value: string;

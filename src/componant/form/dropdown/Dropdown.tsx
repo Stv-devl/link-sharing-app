@@ -31,6 +31,9 @@ const Dropdown: React.FC<DropDownProps> = ({
     options,
   });
 
+  console.log(filteredOptions);
+  console.log(defaultOption);
+
   return (
     <div className="relative w-full">
       <label
