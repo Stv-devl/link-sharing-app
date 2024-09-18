@@ -7,6 +7,7 @@ import useSignUp from '../../hook/auth/useSignUp';
 import Input from '../../componant/form/input/Input';
 import Button from '@/componant/button/Button';
 import IconLinkLarge from '../../assets/logo-devlinks-large.svg';
+import Modal from '@/componant/modal/Modal';
 
 /**
  * The SignUp component renders a sign-up form where users can create a new account.
@@ -86,6 +87,7 @@ const SignUp = (): JSX.Element => {
           </form>
         </div>
       </div>
+      <Modal />
     </section>
   );
 };

@@ -50,9 +50,7 @@ const LinkWrapper: React.FC<LinkWrapperProps> = ({
         });
 
       if (isPreviewPage) {
-        useModalStore
-          .getState()
-          .openModal('Your link have been copied in the clipboard!');
+        useModalStore.getState().openModal('copie');
       } else {
         window.open(validUrl, '_blank');
       }

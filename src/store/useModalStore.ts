@@ -8,6 +8,7 @@ import { create } from 'zustand';
  * @property {boolean} isOpen - Indicates if the modal is open.
  * @property {string | null} content - The content to display in the modal.
  * @property {(content: string) => void} openModal - Function to open the modal with specified content.
+
  * @property {() => void} closeModal - Function to close the modal.
  */
 

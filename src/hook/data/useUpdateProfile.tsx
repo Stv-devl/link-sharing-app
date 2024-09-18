@@ -3,6 +3,7 @@ import useUserStore from '@/store/useUsersStore';
 import * as Yup from 'yup';
 import { profileValidationSchema } from '@/utils/validationShema';
 import { ProfileErrors } from '@/types/types';
+import useModalStore from '@/store/useModalStore';
 
 /**
  * Custom hook for updating user profile.
@@ -43,8 +44,6 @@ const useUpdateProfile = () => {
         await profileValidationSchema.validate(profile, { abortEarly: false });
         const updatedProfile = { ...profile, image: file };
 
-        console.log(updatedProfile);
-
         updateProfileBack(updatedProfile);
         console.log('Profile is valid', profile);
       } catch (error) {
@@ -63,6 +62,7 @@ const useUpdateProfile = () => {
         }
       }
     } else {
+      useModalStore.getState().openModal('error');
       console.log('Profile is null');
     }
   };

@@ -56,6 +56,18 @@ export async function POST(request: Request): Promise<NextResponse> {
     const client = await clientPromise;
     const db = client.db(dbName);
     const usersCollection = db.collection(collectionName);
+
+    const existingUser = await usersCollection.findOne({
+      'credentials.email': newUser.email,
+    });
+
+    if (existingUser) {
+      return NextResponse.json(
+        { error: 'Email already in use' },
+        { status: 400 }
+      );
+    }
+
     const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
 
     const userDocument = {

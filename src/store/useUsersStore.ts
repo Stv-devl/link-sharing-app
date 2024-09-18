@@ -102,11 +102,10 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
 
       const profileResponse = response.profile ?? {};
       console.log(profileResponse);
-      useModalStore
-        .getState()
-        .openModal('Your changes have been successfully saved!');
+      useModalStore.getState().openModal('upload');
     } catch (error) {
       console.error('Error updating the profile:', error);
+      useModalStore.getState().openModal('error');
     }
   },
 
@@ -166,11 +165,10 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       );
       const linkResponse = response.links ?? [];
       console.log(linkResponse);
-      useModalStore
-        .getState()
-        .openModal('Your changes have been successfully saved!');
+      useModalStore.getState().openModal('upload');
     } catch (error) {
       console.error('Error updating the links:', error);
+      useModalStore.getState().openModal('error');
     }
   },
 

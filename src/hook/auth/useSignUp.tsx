@@ -6,6 +6,7 @@ import { FormDataSignUp, UseSignUpReturn } from '../../types/types';
 import { useRouter } from 'next/navigation';
 import { signupValidationSchema } from '../../utils/validationShema';
 import * as Yup from 'yup';
+import useModalStore from '@/store/useModalStore';
 
 /**
  * Custom hook for handling user sign-up functionality.
@@ -31,6 +32,10 @@ const useSignUp = (): UseSignUpReturn => {
   });
   const router = useRouter();
 
+  const { openModal } = useModalStore((state) => ({
+    openModal: state.openModal,
+  }));
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -55,11 +60,16 @@ const useSignUp = (): UseSignUpReturn => {
         }, {} as FormDataSignUp);
         setSignupErrors(fieldErrors);
       } else {
-        console.error('Signup failed:', error);
-        setSignupErrors((prev) => ({
-          ...prev,
-          general: 'Signup process encountered an error',
-        }));
+        const errorMessage = (error as Error).message;
+        if (errorMessage.includes('Email already in use')) {
+          openModal('existing');
+        } else {
+          console.error('Signup failed:', error);
+          setSignupErrors((prev) => ({
+            ...prev,
+            general: 'Signup process encountered an error',
+          }));
+        }
       }
     }
   };

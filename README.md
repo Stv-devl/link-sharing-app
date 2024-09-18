@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Mentor - Link-sharing-app solution
 
-## Getting Started
+This is a solution to the [Link-sharing-app on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-First, run the development server:
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Link](#link)
+- [My process](#my-process)
+  - [Try](#try)
+  - [Built with](#built-with)
+  - [Versions](#versions)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- Create, read, update, delete links and see previews in the mobile mockup
+- Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform
+- Drag and drop links to reorder them
+- Add profile details like profile picture, first name, last name, and email
+- Receive validations if the profile details form is saved with no first or last name
+- Preview their devlinks profile and copy the link to their clipboard
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
+  -Save details to a database (build the project as a full-stack app)
+  -Create an account and log in (add user authentication to the full-stack app)
+
+### Screenshot
+
+![](./Screenshot-login.png)
+![](./Screenshot-signup.png)
+![](./Screenshot-profil.png)
+![](./Screenshot-links.png)
+![](./Screenshot-preview.png)
+
+### Links
+
+- Solution URL: [frontend Mentor solution](https://www.frontendmentor.io/solutions/)
+- Live Site URL: [Live site](https://link-sharing-app-silk.vercel.app/)
+
+## My process
+
+### Try
+
+You can login with the user "test" or signup :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+email : test@test.com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+password : 0000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Built with
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Tailwind Css
+- Next.js
+- Node.js
+- Typescript
+- Zustand store
+- MongoDb
 
-## Learn More
+### Version
 
-To learn more about Next.js, take a look at the following resources:
+- node.js : 20.11.0
+- "bcrypt": "^5.1.1",
+- "cookies": "^0.9.1",
+- "dotenv": "^16.4.5",
+- "jose": "^5.6.3",
+- "js-cookie": "^3.0.5",
+- "mongodb": "^6.8.0",
+- "next": "^14.2.4",
+- "react": "^18.3.1",
+- "react-dom": "^18.3.1",
+- "react-responsive": "^10.0.0",
+- "zustand": "^4.5.4"
+- tailwindcss": "^3.4.4",
+- typescript": "^5"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### What I learned
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- practice Zustand store with local and backend state
+- backend with node.js and mongodb
+- upload image to cloud
 
-## Deploy on Vercel
+### Continued development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Practice backend
+- Try Clerc and Stripe integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Author
+
+- Github- [Github](https://github.com/Stv-devl)
+- Frontend Mentor - [@Stv-devl](https://www.frontendmentor.io/profile/Stv-devl)

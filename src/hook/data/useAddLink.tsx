@@ -122,7 +122,6 @@ const useAddLink = (): UseAddLinkReturn => {
         console.error('Validation error:', error);
       }
     } else {
-      //ajouter modales : erreur + sauvgarder
       console.log('Link is null');
     }
   };

@@ -8,7 +8,7 @@ import {
   DragEndEvent,
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
-import { LinkDetail } from '@/types/types';
+import { LinkDetail, UseDragAndDropReturn } from '@/types/types';
 
 /**
  * Custom hook for handling drag-and-drop functionality.
@@ -19,7 +19,7 @@ import { LinkDetail } from '@/types/types';
  * - `handleDragEnd`: Function to handle the end of a drag event.
  */
 
-const useDragAndDrop = (): object => {
+const useDragAndDrop = (): UseDragAndDropReturn => {
   const { link, updateLinkLocal } = useUserStore();
 
   const handleItemChange = useCallback(

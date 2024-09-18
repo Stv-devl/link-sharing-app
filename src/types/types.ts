@@ -1,3 +1,9 @@
+import {
+  DragEndEvent,
+  KeyboardSensorOptions,
+  PointerSensorOptions,
+  SensorDescriptor,
+} from '@dnd-kit/core';
 import { FormEvent } from 'react';
 import { SingleValueProps } from 'react-select';
 
@@ -199,6 +205,15 @@ export interface DisplayProfileProps {
 
 export interface ProfilePictureWrapperProps {
   setFile: (file: File) => void;
+}
+//.............................//
+//.....drag and drop Hook......//
+//.............................//
+
+export interface UseDragAndDropReturn {
+  link: LinkDetail[] | null;
+  sensors: SensorDescriptor<PointerSensorOptions | KeyboardSensorOptions>[];
+  handleDragEnd: (event: DragEndEvent) => void;
 }
 
 //.............................//
