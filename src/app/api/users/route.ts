@@ -81,7 +81,9 @@ export async function POST(request: Request): Promise<NextResponse> {
         ...newUser.profile,
         email: newUser.email,
       },
+      links: [],
     };
+
     const result = await usersCollection.insertOne(userDocument);
     return NextResponse.json(
       { _id: result.insertedId, ...userDocument },

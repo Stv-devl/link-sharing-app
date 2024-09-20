@@ -7,7 +7,7 @@ import useUserStore from '@/store/useUsersStore';
 import Loading from '@/componant/loading/Loading';
 import Error from '@/componant/error/Error';
 import LinkCard from '@/componant/links/display/LinkCard';
-import DisplayPreviewProfile from '@/componant/profil/DisplayPreviewProfile';
+import DisplayPreviewProfile from '@/componant/profile/DisplayPreviewProfile';
 import Modal from '@/componant/modal/Modal';
 
 /**

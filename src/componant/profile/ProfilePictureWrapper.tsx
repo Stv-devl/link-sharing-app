@@ -75,6 +75,7 @@ const ProfilePictureWrapper: React.FC<ProfilePictureWrapperProps> = ({
         <div
           className="flex flex-col justify-center items-center gap-2 w-[193px] min-w-[193px] min-h-[193px] bg-lightest-purple overflow-hidden cursor-pointer rounded-xl"
           onClick={handleImageClick}
+          role="button"
           aria-label="Upload Profile Picture"
         >
           <div className="relative h-[193px] w-[193px] rounded-xl">

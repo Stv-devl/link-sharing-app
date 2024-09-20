@@ -46,6 +46,7 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
    */
   fetchData: async (): Promise<void> => {
     const { userId } = useAuthStore.getState();
+
     set({ loading: true, error: null });
     try {
       const response = await apiGetUsers();

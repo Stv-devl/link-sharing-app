@@ -4,7 +4,7 @@ import Image from 'next/image';
 import LinkCard from '../links/display/LinkCard';
 import { usePathname } from 'next/navigation';
 import useUserStore from '@/store/useUsersStore';
-import DisplayProfile from '../profil/DisplayPreviewProfile';
+import DisplayProfile from '../profile/DisplayPreviewProfile';
 
 /**
  * Renders the MobileContainer component, which displays the user's profile and links.

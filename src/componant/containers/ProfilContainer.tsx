@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import ProfilePictureWrapper from '../profil/ProfilePictureWrapper';
-import ProfileDetailsWrapper from '../profil/ProfileDetailsWrapper';
+import ProfilePictureWrapper from '../profile/ProfilePictureWrapper';
+import ProfileDetailsWrapper from '../profile/ProfileDetailsWrapper';
 import Button from '../button/Button';
 import useUpdateProfile from '@/hook/data/useUpdateProfile';
 
