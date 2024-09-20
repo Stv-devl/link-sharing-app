@@ -7,6 +7,7 @@ import { generateId } from '@/utils/generateId';
 import * as Yup from 'yup';
 import { FieldErrors, LinkDetail, LinkErrors, UrlValue } from '@/types/types';
 import { UseAddLinkReturn } from '../../types/types';
+import useModalStore from '@/store/useModalStore';
 
 /**
  * Custom hook for managing user links.
@@ -32,6 +33,13 @@ const useAddLink = (): UseAddLinkReturn => {
   } = useUserStore();
 
   const [linkErrors, setLinkErrors] = useState<LinkErrors>({});
+  const [initialLinks, setInitialLinks] = useState<LinkDetail[] | null>(null);
+
+  React.useEffect(() => {
+    if (link && !initialLinks) {
+      setInitialLinks(JSON.parse(JSON.stringify(link)));
+    }
+  }, [link, initialLinks]);
 
   const handleAddLink = () => {
     addLink({
@@ -90,8 +98,29 @@ const useAddLink = (): UseAddLinkReturn => {
     [link, updateLinkLocal, updateLinkErrors]
   );
 
+  const hasChanges = () => {
+    if (!initialLinks || !link) return false;
+    return link.some((currentLink, index) => {
+      const initialLink = initialLinks[index];
+      if (
+        currentLink.label !== initialLink?.label ||
+        currentLink.url !== initialLink?.url ||
+        currentLink.color !== initialLink?.color
+      ) {
+        return true;
+      }
+      return false;
+    });
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!hasChanges()) {
+      useModalStore.getState().openModal('error');
+      return;
+    }
+
     if (link !== null) {
       try {
         await linkValidationSchema.validate(
@@ -99,6 +128,7 @@ const useAddLink = (): UseAddLinkReturn => {
           { abortEarly: false }
         );
         updateLinkBack(link);
+        setInitialLinks(link);
         console.log('Links are valid:', link);
       } catch (error) {
         if (error instanceof Yup.ValidationError) {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import * as Yup from 'yup';
 import { profileValidationSchema } from '@/utils/validationShema';
@@ -30,6 +30,17 @@ const useUpdateProfile = () => {
     email: '',
   });
 
+  const [initialProfile, setInitialProfile] = useState(profile);
+
+  console.log('Current profile:', profile);
+  console.log('Initial profile:', initialProfile);
+
+  useEffect(() => {
+    if (profile && !initialProfile) {
+      setInitialProfile({ ...profile });
+    }
+  }, [profile, initialProfile]);
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -38,15 +49,36 @@ const useUpdateProfile = () => {
     [updateProfileLocal]
   );
 
+  const hasChanges = () => {
+    if (
+      (profile && profile.firstname !== initialProfile?.firstname) ||
+      (profile && profile.lastname !== initialProfile?.lastname) ||
+      (profile && profile.email !== initialProfile?.email) ||
+      file !== null
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  console.log('haschange', hasChanges());
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setProfilErrors({ firstname: '', lastname: '', email: '' });
+
+    if (!hasChanges()) {
+      useModalStore.getState().openModal('error');
+      return;
+    }
+
     if (profile !== null) {
       try {
         await profileValidationSchema.validate(profile, { abortEarly: false });
         const updatedProfile = { ...profile, image: file };
 
         updateProfileBack(updatedProfile);
+        setInitialProfile(updatedProfile);
         console.log('Profile is valid', profile);
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
@@ -64,7 +96,6 @@ const useUpdateProfile = () => {
         }
       }
     } else {
-      useModalStore.getState().openModal('error');
       console.log('Profile is null');
     }
   };

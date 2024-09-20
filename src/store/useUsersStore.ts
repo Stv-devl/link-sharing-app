@@ -106,7 +106,6 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       useModalStore.getState().openModal('upload');
     } catch (error) {
       console.error('Error updating the profile:', error);
-      useModalStore.getState().openModal('error');
     }
   },
 
@@ -169,7 +168,6 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
       useModalStore.getState().openModal('upload');
     } catch (error) {
       console.error('Error updating the links:', error);
-      useModalStore.getState().openModal('error');
     }
   },
 
