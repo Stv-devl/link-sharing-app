@@ -40,7 +40,7 @@ const Modal: React.FC = (): JSX.Element => {
     switch (content) {
       case 'upload':
         return '/images/icon-changes-saved.svg';
-      case 'error ':
+      case 'error':
         return '/images/exclamation-solid.svg';
       case 'existing ':
         return '/images/exclamation-solid.svg';
@@ -53,13 +53,12 @@ const Modal: React.FC = (): JSX.Element => {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center z-50 bg-link-black bg-opacity-20
-      "
+      className={`fixed inset-0 flex items-center justify-center z-50 bg-link-black bg-opacity-20`}
       onClick={closeModal}
     >
       <div
-        className={`absolute bottom-[2%]  w-[90%] sm:w-[450px] rounded-lg  ${
-          errors ? '' : 'bg-dark-gray'
+        className={`absolute bottom-[4%]  w-[90%] sm:w-[450px] rounded-lg  ${
+          errors ? 'bg-white border border-link-red' : 'bg-dark-gray'
         }`}
       >
         <div className="flex justify-center items-center gap-3 p-3 h-full">
@@ -72,7 +71,7 @@ const Modal: React.FC = (): JSX.Element => {
             priority
           />
           <p
-            className={`text-xs sm:text-base sm:font-semibold ${
+            className={`text-sm sm:text-base font-semibold ${
               errors ? 'text-link-red' : 'text-background-white'
             }`}
           >
