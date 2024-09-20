@@ -61,8 +61,6 @@ const useUpdateProfile = () => {
     return false;
   };
 
-  console.log('haschange', hasChanges());
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setProfilErrors({ firstname: '', lastname: '', email: '' });

@@ -42,7 +42,7 @@ const Modal: React.FC = (): JSX.Element => {
         return '/images/icon-changes-saved.svg';
       case 'error':
         return '/images/exclamation-solid.svg';
-      case 'existing ':
+      case 'existing':
         return '/images/exclamation-solid.svg';
       case 'copie':
         return '/images/icon-link.svg';
