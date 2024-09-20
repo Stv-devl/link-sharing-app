@@ -35,25 +35,29 @@ const Preview = (): JSX.Element => {
       : 'h-auto';
 
   return (
-    <main className="relative h-screen w-full ">
+    <main className="relative">
       <PreviewBanner />
-      <section className="bg-background-white w-full h-screen relative">
+      <section className="relative">
         <div className="hidden sm:block absolute top-[-120px] left-0 z-10 bg-dark-purple w-full h-[357px] rounded-b-3xl"></div>
-        <div className="relative z-0 bg-background-white w-screen h-screen"></div>
-        <div className="absolute z-20 w-full sm:w-[390px] top-[450px] sm:top-[400px] h-full sm:h-[710px]  left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white sm:rounded-3xl sm:shadow-custom-gray">
-          <div className=" flex flex-col items-center w-full h-full p-12 gap-10">
-            <div className="w-[200px] h-[200px]">
-              <DisplayPreviewProfile profile={profile} />
-            </div>
-            <div className={`${containerClass} w-full`}>
-              <LinkCard />
+        <div className="relative z-0 bg-white sm:bg-background-white w-screen h-screen"></div>
+        <div className="absolute z-20 top-0 left-0 w-full h-full">
+          <div className="flex justify-center">
+            <div className="w-full sm:w-[390px] h-full sm:h-[710px] bg-white sm:rounded-3xl sm:shadow-custom-gray sm:mt-10">
+              <div className=" flex flex-col items-center w-full h-full p-12 gap-10">
+                <div className="w-[200px] h-[200px]">
+                  <DisplayPreviewProfile profile={profile} />
+                </div>
+                <div className={`${containerClass} w-full`}>
+                  <LinkCard />
+                </div>
+              </div>
+              {link && link.length > 5 && (
+                <span className="absolute z-99 bottom-[2%] left-1/2 text-sm transform -translate-x-1/2 hidden sm:block">
+                  Scroll up and down
+                </span>
+              )}
             </div>
           </div>
-          {link && link.length > 5 && (
-            <span className="absolute z-99 bottom-[2%] left-1/2 text-sm transform -translate-x-1/2 hidden sm:block">
-              Scroll up and down
-            </span>
-          )}
         </div>
       </section>
       <Modal />
