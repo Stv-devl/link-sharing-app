@@ -1,6 +1,6 @@
 # Frontend Mentor - Link-sharing-app solution
 
-This is a solution to the [Link-sharing-app on Frontend Mentor](https://www.frontendmentor.io/challenges/entertainment-web-app-J-UhgAW1X). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Link-sharing-app on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -43,7 +43,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [frontend Mentor solution](https://www.frontendmentor.io/solutions/)
+- Solution URL: [frontend Mentor solution](https://www.frontendmentor.io/solutions/link-sharingapp-solution---full-stack---nextjs-and-nodejs-s07Y6vZhS6)
 - Live Site URL: [Live site](https://link-sharing-app-silk.vercel.app/)
 
 ## My process
