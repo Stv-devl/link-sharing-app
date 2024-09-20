@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import ProfilePictureWrapper from '../profil/ProfilePictureWrapper';
 import ProfileDetailsWrapper from '../profil/ProfileDetailsWrapper';

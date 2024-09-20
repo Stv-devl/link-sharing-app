@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Banner from '../componant/banner/Banner';
 import Modal from '@/componant/modal/Modal';

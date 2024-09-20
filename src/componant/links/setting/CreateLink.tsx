@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback } from 'react';
 import Dropdown from '@/componant/form/dropdown/Dropdown';
 import Input from '@/componant/form/input/Input';
@@ -70,7 +72,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
       <Dropdown
         labelText={'Plateform'}
         value={link.label}
-        name={`"Select${formatText(link.label)}`}
+        name={`Select${formatText(link.label)}`}
         handleOption={handleDropdownChange}
         error={labelError}
       />
@@ -84,6 +86,7 @@ const CreateLink: React.FC<CreateLinkProps> = ({
           value={link.url}
           error={urlError}
           iconSrc={'/images/icon-link.svg'}
+          autoComplete="off"
         />
       </div>
     </div>

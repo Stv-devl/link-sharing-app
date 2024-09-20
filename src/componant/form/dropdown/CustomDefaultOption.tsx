@@ -18,13 +18,7 @@ const CustomDefaultOption: React.FC<CustomDefaultOptionProps> = ({
   const IconComponent = icones[iconKey as keyof typeof icones];
 
   return (
-    <div
-      className="flex items-center "
-      style={{
-        position: 'relative',
-        top: '-23px',
-      }}
-    >
+    <div className="flex items-center ">
       {IconComponent && (
         <IconComponent
           className={isFrontend ? 'w-5 h-5 mr-2' : 'w-4 h-4 mr-2'}

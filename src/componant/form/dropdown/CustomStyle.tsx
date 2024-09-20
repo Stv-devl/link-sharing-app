@@ -1,3 +1,5 @@
+'use client';
+
 import { StylesConfig } from 'react-select';
 import { OptionTypeProps } from '@/types/types';
 

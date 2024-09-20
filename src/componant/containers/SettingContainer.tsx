@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Button from '../button/Button';
 import CreateLink from '../links/setting/CreateLink';

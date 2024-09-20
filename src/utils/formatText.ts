@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Formats a given text by removing all whitespace characters and converting it to lowercase.
  * @param {string} name - The text to format.

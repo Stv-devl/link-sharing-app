@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import '../global.css';
 
@@ -11,7 +13,11 @@ import '../global.css';
  * @returns {JSX.Element} The rendered RootLayout component containing the application's structure and styles.
  */
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => (
   <html lang="en">
     <head>
       <title>Link-sharing-app</title>

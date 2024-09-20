@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useState } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import * as Yup from 'yup';

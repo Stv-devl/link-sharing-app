@@ -1,17 +1,17 @@
 'use client';
 import React from 'react';
-import { InputProps } from '../../../types/types';
+import { CustomsInputProps } from '../../../types/types';
 import Image from 'next/image';
 
 /**
  * Renders an input field with dynamic styling based on validation state.
  * The component supports displaying an icon, and changes the border and text color based on error presence.
  * An error message is displayed below the input field when validation fails.
- * @param {InputProps} props - The properties for the Input component.
+ * @param {CustomsInputProps} props - The properties for the Input component.
  * @returns The rendered input component which may include an optional error message.
  */
 
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<CustomsInputProps> = ({
   name,
   type,
   handleChange,
@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
   error,
   autoComplete,
   iconSrc,
-}: InputProps) => {
+}: CustomsInputProps) => {
   const errorId = `error-${name}`;
   const haveIcon = Boolean(iconSrc);
   const inputClasses = `w-full border bg-white placeholder:text-medium-gray ${
@@ -61,8 +61,6 @@ const Input: React.FC<InputProps> = ({
           onChange={handleChange}
           placeholder={placeholder}
           autoComplete={autoComplete}
-          aria-invalid={!!error}
-          aria-describedby={error ? errorId : undefined}
         />
         {error && (
           <span

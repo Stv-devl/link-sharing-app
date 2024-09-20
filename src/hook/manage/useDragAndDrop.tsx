@@ -1,3 +1,4 @@
+'use client';
 import React, { useCallback } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import {

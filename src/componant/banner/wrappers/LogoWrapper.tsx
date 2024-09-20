@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import IconLinkLarge from '../../../assets/logo-devlinks-large.svg';

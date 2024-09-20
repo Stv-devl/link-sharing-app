@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useCallback } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import Image from 'next/image';

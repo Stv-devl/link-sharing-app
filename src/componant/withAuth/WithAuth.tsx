@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, ComponentType } from 'react';
 import { useRouter } from 'next/navigation';
 import useIsAuthenticated from '../../hook/auth/useIsAuthenticated';

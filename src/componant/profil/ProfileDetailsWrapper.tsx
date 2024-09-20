@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Input from '../form/input/Input';
 import { ProfileDetailsWrapperProps } from '@/types/types';

@@ -128,7 +128,7 @@ export interface ProfileErrors {
 //.............................//
 //.....Components props........//
 //.............................//
-export interface InputProps {
+export interface CustomsInputProps {
   name: string;
   type: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

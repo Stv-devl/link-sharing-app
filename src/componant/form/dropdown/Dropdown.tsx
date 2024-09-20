@@ -31,20 +31,18 @@ const Dropdown: React.FC<DropDownProps> = ({
     options,
   });
 
-  console.log(filteredOptions);
-  console.log(defaultOption);
+  const CustomInput: React.FC = () => null;
 
   return (
     <div className="relative w-full">
-      <label
-        className="block text-xs font-normal text-dark-gray"
-        htmlFor={name}
-      >
-        {labelText}
-      </label>
+      <p className="block text-xs font-normal text-dark-gray">{labelText}</p>
       <Select
         options={filteredOptions}
-        components={{ Option, SingleValue: CustomDefaultOption }}
+        components={{
+          Input: CustomInput,
+          Option,
+          SingleValue: CustomDefaultOption,
+        }}
         defaultValue={defaultOption}
         onChange={(newValue) => {
           if (newValue && !Array.isArray(newValue)) {
@@ -58,7 +56,6 @@ const Dropdown: React.FC<DropDownProps> = ({
           >
         }
         classNamePrefix="select"
-        inputId={name}
         instanceId={name}
       />
       {error && (
