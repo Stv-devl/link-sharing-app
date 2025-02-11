@@ -1,6 +1,6 @@
 'use client ';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useUserStore from '@/store/useUsersStore';
 import { linkValidationSchema } from '@/utils/validationShema';
 import { generateId } from '@/utils/generateId';
@@ -35,8 +35,10 @@ const useAddLink = (): UseAddLinkReturn => {
   const [linkErrors, setLinkErrors] = useState<LinkErrors>({});
   const [initialLinks, setInitialLinks] = useState<LinkDetail[] | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (link && !initialLinks) {
+      console.log(JSON.parse(JSON.stringify(link)));
+
       setInitialLinks(JSON.parse(JSON.stringify(link)));
     }
   }, [link, initialLinks]);
@@ -103,6 +105,7 @@ const useAddLink = (): UseAddLinkReturn => {
     return link.some((currentLink, index) => {
       const initialLink = initialLinks[index];
       if (
+        initialLinks.length !== link.length ||
         currentLink.label !== initialLink?.label ||
         currentLink.url !== initialLink?.url ||
         currentLink.color !== initialLink?.color

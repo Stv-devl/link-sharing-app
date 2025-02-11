@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
-const secretKey = new TextEncoder().encode(process.env.SECRET_KEY);
+const secretKey = process.env.SECRET_KEY
+  ? new TextEncoder().encode(process.env.SECRET_KEY)
+  : (() => {
+      throw new Error('SECRET_KEY is not defined in environment variables');
+    })();
 
 /**
  * Middleware for protecting routes by verifying JWT tokens.

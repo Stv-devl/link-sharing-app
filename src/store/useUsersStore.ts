@@ -188,6 +188,7 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
   removeLinkBack: async (linkKey: string): Promise<void> => {
     const { user } = get();
     if (!user) return;
+
     try {
       await apiDelete(user._id, linkKey);
 
