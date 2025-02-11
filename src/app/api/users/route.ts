@@ -31,13 +31,29 @@ async function uploadImageToCloudinary(file: File) {
  * Handles GET requests to retrieve the list of users.
  * @returns {NextResponse} A response containing the list of users in JSON format.
  */
-export async function GET(): Promise<NextResponse> {
+export async function GET(request: Request): Promise<NextResponse> {
   try {
+    const url = new URL(request.url);
+    const userId = url.searchParams.get('userId');
+
+    if (!userId || !ObjectId.isValid(userId)) {
+      return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
+    }
+
     const client = await clientPromise;
     const db = client.db(dbName);
     const usersCollection = db.collection(collectionName);
-    const users = await usersCollection.find().toArray();
-    return NextResponse.json(users);
+
+    const user = await usersCollection.findOne(
+      { _id: new ObjectId(userId) },
+      { projection: { credentials: 0, password: 0 } }
+    );
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(user);
   } catch (error) {
     console.error('Error processing GET request:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });

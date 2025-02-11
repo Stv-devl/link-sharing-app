@@ -47,19 +47,23 @@ const useUserStore = create<useRouterDataState>((set, get) => ({
   fetchData: async (): Promise<void> => {
     const { userId } = useAuthStore.getState();
 
+    if (!userId) {
+      set({ error: 'User ID is not available', loading: false });
+      return;
+    }
+
     set({ loading: true, error: null });
     try {
-      const response = await apiGetUsers();
-      const user = response.users.find((u) => u._id === userId) || null;
-      if (user && user.links) {
+      const user = await apiGetUsers(userId);
+      if (user) {
         set({
-          user: user,
-          link: user.links,
-          profile: user.profile,
+          user,
+          link: user.links || [],
+          profile: user.profile || null,
           loading: false,
         });
       } else {
-        set({ user, loading: false });
+        set({ user: null, loading: false });
       }
     } catch (error) {
       const errorMsg =

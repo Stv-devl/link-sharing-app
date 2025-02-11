@@ -7,24 +7,22 @@ import { Users } from '../types/types';
  * @returns {Promise<{ users: Users[] }>} - The data fetched from the API.
  * @throws {Error} - If there is a problem with the fetch operation.
  */
-const apiData = async (): Promise<{ users: Users[] }> => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/users`;
+const apiGetUsers = async (userId: string): Promise<Users | null> => {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/users?userId=${userId}`;
 
   try {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(
-        `Error fetching data from ${url}. Status: ${response.status}`
-      );
+      throw new Error(`Error fetching user. Status: ${response.status}`);
     }
-    const users: Users[] = await response.json();
 
-    return { users };
-  } catch (error: unknown) {
-    console.error('There has been a problem with your fetch operation:', error);
+    const user: Users = await response.json();
+    return user;
+  } catch (error) {
+    console.error('Error fetching user:', error);
     throw error;
   }
 };
 
-export default apiData;
+export default apiGetUsers;
